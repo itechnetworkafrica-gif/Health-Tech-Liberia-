@@ -22,6 +22,7 @@ import Partners from "@/pages/Partners";
 import GetInvolved from "@/pages/GetInvolved";
 import Donate from "@/pages/Donate";
 import Contact from "@/pages/Contact";
+import Certificates from "@/pages/Certificates";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ function Router() {
           <Route path="/get-involved" component={GetInvolved} />
           <Route path="/donate" component={Donate} />
           <Route path="/contact" component={Contact} />
+          <Route path="/certificates" component={Certificates} />
           <Route component={NotFound} />
         </Switch>
       </main>

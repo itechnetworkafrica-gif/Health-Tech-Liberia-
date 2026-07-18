@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Facebook, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Facebook, Linkedin, Mail, Phone, MapPin, ArrowRight, Award } from "lucide-react";
 import htlLogo from "@assets/1784331190411_1784331478727.jpg";
 
 export default function Footer() {
@@ -45,6 +45,7 @@ export default function Footer() {
                 { label: "Featured Projects", path: "/projects" },
                 { label: "Research", path: "/research" },
                 { label: "News & Media", path: "/news" },
+                { label: "Certificate Portal", path: "/certificates" },
               ].map((link, i) => (
                 <li key={i}>
                   <Link href={link.path} className="text-blue-200/90 hover:text-white transition-colors text-sm flex items-center gap-2 group">

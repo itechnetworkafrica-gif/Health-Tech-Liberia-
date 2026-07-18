@@ -1,20 +1,25 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, Heart } from "lucide-react";
+import {
+  Menu, X, ChevronDown, Heart,
+  Monitor, FlaskConical, Scale, Brain, Leaf,
+  Banknote, HeartPulse, Users, Megaphone,
+  Award,
+} from "lucide-react";
 import htlLogo from "@assets/1784331190411_1784331478727.jpg";
 import { motion, AnimatePresence } from "framer-motion";
 import TopBar from "./TopBar";
 
 const PROGRAMS = [
-  { name: "Digital Health & Innovation", slug: "digital-health", icon: "💻" },
-  { name: "STEM Education & Research", slug: "stem-education", icon: "🔬" },
-  { name: "Gender Equality", slug: "gender-equality", icon: "⚖️" },
-  { name: "Mental Health", slug: "mental-health", icon: "🧠" },
-  { name: "Climate & Environmental Health", slug: "climate-health", icon: "🌿" },
-  { name: "Health Financing", slug: "health-financing", icon: "💰" },
-  { name: "Sexual & Reproductive Health", slug: "sexual-reproductive-health", icon: "❤️" },
-  { name: "Peace & Community Engagement", slug: "peace-community", icon: "🤝" },
-  { name: "Advocacy", slug: "advocacy", icon: "📢" },
+  { name: "Digital Health & Innovation", slug: "digital-health", Icon: Monitor },
+  { name: "STEM Education & Research", slug: "stem-education", Icon: FlaskConical },
+  { name: "Gender Equality", slug: "gender-equality", Icon: Scale },
+  { name: "Mental Health", slug: "mental-health", Icon: Brain },
+  { name: "Climate & Environmental Health", slug: "climate-health", Icon: Leaf },
+  { name: "Health Financing", slug: "health-financing", Icon: Banknote },
+  { name: "Sexual & Reproductive Health", slug: "sexual-reproductive-health", Icon: HeartPulse },
+  { name: "Peace & Community Engagement", slug: "peace-community", Icon: Users },
+  { name: "Advocacy", slug: "advocacy", Icon: Megaphone },
 ];
 
 export default function Navbar() {
@@ -83,7 +88,7 @@ export default function Navbar() {
               <Link href="/about" className={navLinkClass("/about")}>About</Link>
 
               {/* Programs Mega Dropdown */}
-              <div 
+              <div
                 className="relative group h-full flex items-center"
                 onMouseEnter={() => setActiveDropdown('programs')}
                 onMouseLeave={() => setActiveDropdown(null)}
@@ -114,7 +119,9 @@ export default function Navbar() {
                               href={`/programs/${p.slug}`}
                               className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors group/link"
                             >
-                              <span className="text-xl mt-0.5">{p.icon}</span>
+                              <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 mt-0.5 group-hover/link:bg-primary group-hover/link:text-white transition-colors text-[#0A3FAF]">
+                                <p.Icon className="w-4 h-4" strokeWidth={1.75} />
+                              </div>
                               <div>
                                 <div className="font-bold text-gray-900 text-sm group-hover/link:text-primary transition-colors leading-tight mb-1">{p.name}</div>
                               </div>
@@ -129,9 +136,9 @@ export default function Navbar() {
 
               <Link href="/projects" className={navLinkClass("/projects")}>Projects</Link>
               <Link href="/research" className={navLinkClass("/research")}>Research</Link>
-              
+
               {/* More Dropdown */}
-              <div 
+              <div
                 className="relative group h-full flex items-center"
                 onMouseEnter={() => setActiveDropdown('more')}
                 onMouseLeave={() => setActiveDropdown(null)}
@@ -155,12 +162,16 @@ export default function Navbar() {
                         <Link href="/partners" className="block px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors">Partners</Link>
                         <div className="h-px bg-gray-100 my-1 mx-2"></div>
                         <Link href="/contact" className="block px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors">Contact</Link>
+                        <div className="h-px bg-gray-100 my-1 mx-2"></div>
+                        <Link href="/certificates" className="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-[#C9972D] hover:bg-amber-50 rounded-xl transition-colors">
+                          <Award className="w-4 h-4" /> Certificate Portal
+                        </Link>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
-              
+
               <div className="flex items-center gap-4 pl-4 border-l border-gray-200">
                 <Link href="/get-involved" className="text-sm font-bold text-primary hover:text-[#0A2D7A] transition-colors uppercase tracking-wider">
                   Get Involved
@@ -198,9 +209,9 @@ export default function Navbar() {
               <div className="p-6 flex flex-col gap-2 pb-32">
                 <Link href="/" className="text-xl font-heading font-bold text-gray-900 p-4 border-b border-gray-100 hover:bg-slate-50 rounded-xl">Home</Link>
                 <Link href="/about" className="text-xl font-heading font-bold text-gray-900 p-4 border-b border-gray-100 hover:bg-slate-50 rounded-xl">About</Link>
-                
+
                 <div className="border-b border-gray-100 rounded-xl overflow-hidden">
-                  <button 
+                  <button
                     onClick={() => toggleMobileAccordion('programs')}
                     className="w-full text-left text-xl font-heading font-bold text-gray-900 p-4 flex justify-between items-center hover:bg-slate-50"
                   >
@@ -217,8 +228,11 @@ export default function Navbar() {
                         <div className="p-4 flex flex-col gap-3 pl-8">
                           <Link href="/programs" className="text-primary font-bold py-2">All Programs</Link>
                           {PROGRAMS.map((p) => (
-                            <Link key={p.slug} href={`/programs/${p.slug}`} className="text-gray-700 font-medium py-2 flex items-center gap-2">
-                              <span>{p.icon}</span> {p.name}
+                            <Link key={p.slug} href={`/programs/${p.slug}`} className="text-gray-700 font-medium py-2 flex items-center gap-3">
+                              <div className="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 text-[#0A3FAF]">
+                                <p.Icon className="w-3.5 h-3.5" strokeWidth={1.75} />
+                              </div>
+                              {p.name}
                             </Link>
                           ))}
                         </div>
@@ -229,9 +243,9 @@ export default function Navbar() {
 
                 <Link href="/projects" className="text-xl font-heading font-bold text-gray-900 p-4 border-b border-gray-100 hover:bg-slate-50 rounded-xl">Projects</Link>
                 <Link href="/research" className="text-xl font-heading font-bold text-gray-900 p-4 border-b border-gray-100 hover:bg-slate-50 rounded-xl">Research</Link>
-                
+
                 <div className="border-b border-gray-100 rounded-xl overflow-hidden">
-                  <button 
+                  <button
                     onClick={() => toggleMobileAccordion('more')}
                     className="w-full text-left text-xl font-heading font-bold text-gray-900 p-4 flex justify-between items-center hover:bg-slate-50"
                   >
@@ -251,6 +265,9 @@ export default function Navbar() {
                           <Link href="/resources" className="text-gray-700 font-medium">Resources</Link>
                           <Link href="/partners" className="text-gray-700 font-medium">Partners</Link>
                           <Link href="/contact" className="text-gray-700 font-medium">Contact</Link>
+                          <Link href="/certificates" className="text-[#C9972D] font-bold flex items-center gap-2">
+                            <Award className="w-4 h-4" /> Certificate Portal
+                          </Link>
                         </div>
                       </motion.div>
                     )}
@@ -258,7 +275,7 @@ export default function Navbar() {
                 </div>
 
                 <Link href="/get-involved" className="text-xl font-heading font-bold text-primary p-4 border-b border-primary/20 hover:bg-primary/5 rounded-xl">Get Involved</Link>
-                
+
                 <div className="mt-8">
                   <Link href="/donate" className="bg-primary text-white text-center py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-lg">
                     <Heart className="w-5 h-5 fill-white/20" /> Make a Donation

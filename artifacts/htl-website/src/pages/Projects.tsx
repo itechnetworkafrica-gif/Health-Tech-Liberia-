@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, Globe, MapPin, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Globe, MapPin, ChevronRight } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import proj1 from "../assets/project_1.jpg";
 import proj2 from "../assets/project_2.jpg";
@@ -88,7 +88,7 @@ export default function Projects() {
                   <h3 className="text-xl font-heading font-bold text-gray-900 leading-tight group-hover:text-[#0A3FAF] transition-colors flex-grow">{p.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">{p.desc}</p>
                   <Link href="#" className="text-xs font-bold uppercase tracking-widest text-gray-800 flex items-center gap-1 hover:text-[#0A3FAF] transition-colors mt-auto">
-                    READ CASE STUDY <span className="text-lg leading-none">↗</span>
+                    READ CASE STUDY <ArrowUpRight className="w-4 h-4" />
                   </Link>
                 </div>
               </motion.div>

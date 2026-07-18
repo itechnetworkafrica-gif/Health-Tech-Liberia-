@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { motion, useInView } from "framer-motion";
 import {
-  ArrowRight, Heart, Activity, Users,
+  ArrowRight, ArrowUpRight, Star, Heart, Activity, Users,
   Microscope, Leaf, Globe, ShieldAlert, Shield,
   Megaphone, MapPin, Calendar, CheckCircle
 } from "lucide-react";
@@ -243,7 +243,9 @@ export default function Home() {
                 Revolutionizing healthcare delivery in Liberia through technology, research, and innovation.
               </h2>
               <div className="border-t border-white/15 pt-7 flex items-center gap-4">
-                <div className="flex gap-0.5 text-[#C9972D] text-lg">★★★★★</div>
+                <div className="flex gap-0.5 text-[#C9972D]">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-[#C9972D]" strokeWidth={0} />)}
+                </div>
                 <span className="text-white/70 font-medium">Health Tech Liberia · est. 2019</span>
               </div>
             </motion.div>
@@ -360,7 +362,7 @@ export default function Home() {
                   <h3 className="text-lg font-heading font-semibold text-gray-900 leading-snug group-hover:text-[#0A3FAF] transition-colors flex-grow">{p.title}</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">{p.desc}</p>
                   <Link href="/projects" className="text-[11px] font-bold uppercase tracking-widest text-gray-700 flex items-center gap-1 hover:text-[#0A3FAF] transition-colors mt-1">
-                    READ MORE <span className="text-base leading-none">↗</span>
+                    READ MORE <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </motion.div>
@@ -444,7 +446,7 @@ export default function Home() {
                   <h3 className="text-lg font-heading font-semibold text-gray-900 leading-snug group-hover:text-[#0A3FAF] transition-colors">{n.title}</h3>
                   <p className="text-gray-400 text-sm leading-relaxed flex-grow">{n.excerpt}</p>
                   <Link href="/news" className="text-[11px] font-bold uppercase tracking-widest text-gray-700 flex items-center gap-1 hover:text-[#0A3FAF] transition-colors mt-2">
-                    READ MORE <span className="text-base leading-none">↗</span>
+                    READ MORE <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </motion.div>

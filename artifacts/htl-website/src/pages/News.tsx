@@ -99,7 +99,7 @@ export default function News() {
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">With new funding secured from international partners, HTL is set to expand its core frontline worker training program...</p>
                   <Link href="#" className="text-xs font-bold uppercase tracking-widest text-gray-800 flex items-center gap-1 hover:text-[#0A3FAF] transition-colors mt-4">
-                    READ MORE <span className="text-lg leading-none">↗</span>
+                    READ MORE <ArrowUpRight className="w-4 h-4" />
                   </Link>
                 </div>
               </motion.div>

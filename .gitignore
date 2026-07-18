@@ -1,49 +1,42 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Dependencies
+node_modules/
+.pnpm-store/
 
-# compiled output
-dist
-tmp
-out-tsc
+# Build outputs
+dist/
+build/
+.output/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# TypeScript cache
 *.tsbuildinfo
-.expo
-.expo-shared
 
-# dependencies
-node_modules
+# Replit-specific (not needed in Git)
+.replit
+replit.nix
+.upm/
+.cache/
+.config/
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
-
-# System Files
+# OS
 .DS_Store
 Thumbs.db
 
-.cursor/rules/nx-rules.mdc
-.github/instructions/nx.instructions.md
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# Replit
-.cache/
-.local/
+# AI-generated image cache (real photos in attached_assets/ are kept)
+attached_assets/generated_images/

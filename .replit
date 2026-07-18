@@ -1,12 +1,8 @@
-modules = ["nodejs-20", "web", "bash", "postgresql-16"]
+modules = ["nodejs-24"]
 
 [deployment]
 router = "application"
 deploymentTarget = "autoscale"
-
-[deployment.build]
-args = ["pnpm", "--filter", "@workspace/htl-website", "run", "build"]
-env = { "BASE_PATH" = "/", "NODE_ENV" = "production", "PORT" = "3000" }
 
 [deployment.postBuild]
 args = ["pnpm", "store", "prune"]
@@ -22,6 +18,3 @@ expertMode = true
 [postMerge]
 path = "scripts/post-merge.sh"
 timeoutMs = 20000
-
-[nix]
-channel = "stable-25_05"

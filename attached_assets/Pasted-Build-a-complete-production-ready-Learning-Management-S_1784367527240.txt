@@ -1,0 +1,584 @@
+Build a complete, production-ready Learning Management System (LMS) into my existing Health Tech Liberia website. Integrate it seamlessly with the current website design, branding, colors, typography, animations, responsiveness, and architecture. The LMS should feel like part of the existing website, not a separate application.
+
+The platform must be modern, secure, scalable, responsive, and optimized for desktop, tablet, and mobile devices.
+
+====================================================
+GENERAL REQUIREMENTS
+====================================================
+
+• Keep the current website design and navigation.
+• Maintain Health Tech Liberia branding.
+• Blue and white color theme.
+• Premium UI/UX.
+• Fast loading.
+• SEO friendly.
+• Accessible.
+• Secure authentication.
+• Modular and scalable code.
+• Clean database architecture.
+• Modern dashboard interface.
+• Responsive across all screen sizes.
+
+====================================================
+USER AUTHENTICATION
+====================================================
+
+Create a complete authentication system including:
+
+• User Registration
+• Login
+• Logout
+• Forgot Password
+• Reset Password
+• Change Password
+• Edit Profile
+• Upload Profile Photo
+• Email Verification (optional)
+• Remember Me
+
+Store every user permanently.
+
+Users should always be able to log back into their account months or years later and continue from where they previously stopped.
+
+====================================================
+STUDENT DASHBOARD
+====================================================
+
+After login, display a beautiful dashboard showing:
+
+• Welcome Message
+• Profile
+• Profile Photo
+• Total Courses
+• Enrolled Courses
+• Completed Courses
+• Certificates Earned
+• Current Learning Progress
+• Notifications
+• Recent Activities
+• Payment History
+• Certificates Ready
+• Continue Learning Button
+
+====================================================
+COURSE CATALOG
+====================================================
+
+Create a professional course catalog.
+
+Each course should include:
+
+• Cover Image
+• Course Title
+• Description
+• Course Category
+• Instructor
+• Difficulty
+• Duration
+• Number of Lessons
+• Certificate Included
+• Enroll Button
+
+Users can enroll in unlimited courses.
+
+Allow searching and filtering.
+
+====================================================
+CREATE 20 COURSES
+====================================================
+
+Generate these professional courses:
+
+1. Introduction to Digital Health
+
+2. Digital Health Fundamentals
+
+3. Health Information Systems (HIS)
+
+4. Electronic Medical Records (EMR/EHR)
+
+5. Telemedicine & Telehealth
+
+6. Artificial Intelligence in Healthcare
+
+7. Health Data Management & Analytics
+
+8. Health Data Privacy & Cybersecurity
+
+9. Digital Health Leadership
+
+10. Community Health & Digital Innovation
+
+11. Mobile Health (mHealth)
+
+12. Public Health Informatics
+
+13. Health Technology Entrepreneurship
+
+14. Project Management for Health Programs
+
+15. Monitoring, Evaluation & Learning (MEL)
+
+16. Digital Skills for Healthcare Professionals
+
+17. Digital Literacy for Community Health Workers
+
+18. Health Research Methods & Data Collection
+
+19. Climate Change, Technology & Public Health
+
+20. Grant Writing, Proposal Development & Fundraising
+
+====================================================
+LESSONS
+====================================================
+
+Each course must contain:
+
+Lesson 1
+
+Lesson 2
+
+Lesson 3
+
+Lesson 4
+
+Lesson 5
+
+Generate complete educational lesson content.
+
+Each lesson must include:
+
+• Lesson Title
+
+• Learning Objectives
+
+• Detailed Reading
+
+• Headings
+
+• Sub-headings
+
+• Bullet Points
+
+• Important Notes
+
+• Tips
+
+• Case Study (where applicable)
+
+• Summary
+
+• Reflection Questions
+
+• Key Takeaways
+
+Lessons should contain only text.
+
+No videos.
+
+No audio.
+
+No downloadable lesson PDFs.
+
+====================================================
+COURSE PROGRESSION
+====================================================
+
+Students cannot skip lessons.
+
+Flow should be:
+
+Lesson 1
+
+↓
+
+Lesson 2
+
+↓
+
+Lesson 3
+
+↓
+
+Lesson 4
+
+↓
+
+Lesson 5
+
+↓
+
+Final Examination
+
+Automatically save learning progress.
+
+If users leave and return later, continue from the exact lesson where they stopped.
+
+====================================================
+QUIZZES
+====================================================
+
+After Lesson 5,
+
+unlock the Final Assessment.
+
+Generate:
+
+20 professional multiple-choice questions.
+
+Questions must be based on the lesson content.
+
+Passing Score:
+
+70%
+
+Allow 2 attempts.
+
+Automatically grade the exam.
+
+If passed,
+
+automatically complete the course.
+
+====================================================
+CERTIFICATE SYSTEM
+====================================================
+
+Automatically generate beautiful professional certificates.
+
+Certificate Design:
+
+Health Tech Liberia Logo
+
+Blue and White Theme
+
+Professional Border
+
+Watermark
+
+Certificate Title
+
+Student Name
+
+Course Name
+
+Completion Date
+
+Certificate Number
+
+Certificate ID
+
+Verification URL
+
+QR Code
+
+Issue Date
+
+Premium Typography
+
+Professional Layout
+
+====================================================
+CERTIFICATE WORDING
+====================================================
+
+CERTIFICATE OF COMPLETION
+
+This certificate is proudly presented to
+
+(Student Name)
+
+For successfully completing
+
+(Course Name)
+
+This certificate is awarded in recognition of successfully completing the training program offered by the Health Tech Liberia Edu Team through the Health Tech Liberia E-Learning Platform.
+
+====================================================
+SIGNATURE
+====================================================
+
+SIGNED BY
+
+Makessa Bility
+
+Founder & Executive Director
+
+Health Tech Liberia
+
+Course Offered By
+
+Health Tech Liberia Edu Team
+
+====================================================
+CERTIFICATE PORTAL
+====================================================
+
+Integrate all certificates with our existing Certificate Verification Portal.
+
+Search by:
+
+• Certificate ID
+
+• Student ID
+
+• QR Code
+
+Display:
+
+Verified
+
+Student Name
+
+Course
+
+Completion Date
+
+Certificate ID
+
+Issue Date
+
+Issued By
+
+Signed By
+
+Download Certificate
+
+Print Certificate
+
+====================================================
+CERTIFICATE PAYMENT
+====================================================
+
+Students may view their certificate after passing.
+
+However,
+
+before downloading or printing,
+
+they must pay
+
+USD $5.
+
+After payment,
+
+unlock:
+
+Download
+
+Print
+
+Store payment status permanently.
+
+The payment system should be modular so Stripe or another payment provider can be connected later.
+
+====================================================
+CERTIFICATE SECURITY
+====================================================
+
+Instead of trying to block screenshots (which cannot be reliably enforced on websites), implement strong authenticity features:
+
+• Unique Certificate ID
+
+• QR Code
+
+• Online Verification Page
+
+• Digital Verification Badge
+
+• Secure Download URL
+
+• Verification Database
+
+Every certificate must be verifiable online.
+
+====================================================
+ADMIN DASHBOARD
+====================================================
+
+Create a premium Admin Panel.
+
+Admin can:
+
+Create Courses
+
+Edit Courses
+
+Delete Courses
+
+Create Lessons
+
+Edit Lessons
+
+Delete Lessons
+
+Create Exams
+
+Manage Students
+
+Manage Certificates
+
+Manage Payments
+
+Manage Course Categories
+
+View Analytics
+
+View Reports
+
+Export Reports
+
+Search Students
+
+Search Certificates
+
+View Revenue
+
+View Dashboard Statistics
+
+Approve Certificates
+
+====================================================
+DATABASE
+====================================================
+
+Store permanently:
+
+Users
+
+Profiles
+
+Courses
+
+Lessons
+
+Enrollments
+
+Progress
+
+Quiz Results
+
+Certificates
+
+Payments
+
+Notifications
+
+Course Completion
+
+Nothing should be lost after deployment.
+
+====================================================
+EMAILS
+====================================================
+
+Automatically send emails for:
+
+Registration
+
+Welcome
+
+Enrollment
+
+Course Completion
+
+Certificate Available
+
+Payment Confirmation
+
+Password Reset
+
+====================================================
+SEARCH
+====================================================
+
+Students can search:
+
+Courses
+
+Certificates
+
+Dashboard
+
+Admins can search:
+
+Students
+
+Courses
+
+Certificates
+
+Payments
+
+====================================================
+NOTIFICATIONS
+====================================================
+
+Show notifications for:
+
+Registration Successful
+
+Enrollment Successful
+
+Lesson Completed
+
+Course Completed
+
+Quiz Passed
+
+Certificate Ready
+
+Payment Received
+
+====================================================
+DESIGN
+====================================================
+
+Use:
+
+Modern Dashboard
+
+Rounded Cards
+
+Beautiful Tables
+
+Professional Forms
+
+Loading Skeletons
+
+Smooth Animations
+
+Progress Bars
+
+Achievement Badges
+
+Completion Animations
+
+Dark Mode Support
+
+Beautiful Icons
+
+Premium UI Components
+
+====================================================
+TECHNICAL REQUIREMENTS
+====================================================
+
+• Keep the current website architecture.
+• Maintain existing responsiveness.
+• Use reusable components.
+• Optimize performance.
+• Use secure authentication.
+• Optimize images.
+• Lazy load content.
+• Maintain clean code.
+• Keep everything scalable for future upgrades.
+
+====================================================
+FINAL OBJECTIVE
+====================================================
+
+Deliver a fully functional Health Tech Liberia E-Learning Platform where users can create permanent accounts, enroll in multiple courses simultaneously, study five professionally written text-based lessons per course, complete a final assessment, automatically receive a professionally designed certificate signed by Makessa Bility (Founder & Executive Director), verify the certificate online through the Certificate Verification Portal, pay a USD $5 certificate issuance fee before downloading or printing the certificate, and return at any time to continue learning and access their dashboard, certificates, progress, and profile.
+
+The system should feel like a premium online learning platform similar to Coursera or Udemy (adapted to Health Tech Liberia's branding), while remaining simple, fast, easy to manage, and scalable for future expansion.

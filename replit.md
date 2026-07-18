@@ -1,36 +1,49 @@
-# [Project name]
+# Health Tech Liberia Website
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A React + Express full-stack application for Health Tech Liberia — a digital health nonprofit based in Liberia. The website showcases programs, projects, and research, and is planned to host a full Learning Management System (LMS) for digital health education.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/htl-website run dev` — run the frontend (React/Vite)
+- `pnpm --filter @workspace/api-server run dev` — run the API server (Express, port assigned via `PORT` env)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- Required env: `DATABASE_URL` — Postgres connection string (auto-provided by Replit)
+- Required env: `SESSION_SECRET` — secret for session signing (set as Replit secret)
 
 ## Stack
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
+- pnpm workspaces, Node.js 20, TypeScript 5.9
+- Frontend: React 18, Vite, Tailwind CSS, shadcn/ui, Framer Motion, TanStack Query, Wouter
 - API: Express 5
-- DB: PostgreSQL + Drizzle ORM
+- DB: PostgreSQL + Drizzle ORM (Replit's built-in database, `DATABASE_URL` auto-set)
 - Validation: Zod (`zod/v4`), `drizzle-zod`
 - API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- Build: esbuild
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/htl-website/` — React frontend (Vite)
+- `artifacts/api-server/` — Express API server
+- `lib/db/` — Drizzle ORM schema and DB client
+- `lib/api-spec/` — OpenAPI spec (source of truth for API contract)
+- `lib/api-client-react/` — Generated React hooks (TanStack Query)
+- `lib/api-zod/` — Generated Zod schemas
+- `.migration-backup/` — Pre-migration backup, can be ignored
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Path-based artifact routing: frontend at `/`, API at `/api`
+- API contract is defined in OpenAPI spec (`lib/api-spec`); client hooks and Zod schemas are code-generated from it
+- DB schema lives in `lib/db/src/schema/index.ts` — users table + sessions table (for auth)
+- SESSION_SECRET is set as a Replit secret for session-based auth
+- Auth uses bcrypt + express-session stored in Postgres (`sessions` table)
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+Health Tech Liberia website + planned LMS platform where students can enroll in digital health courses, complete lessons and assessments, and earn verifiable certificates. Courses are focused on digital health topics for the Liberian context.
 
 ## User preferences
 
@@ -38,8 +51,13 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Always run `pnpm install` from the workspace root after pulling changes
+- `DATABASE_URL` and `PORT` are auto-injected by Replit — do not hardcode them
+- `SESSION_SECRET` must be set as a Replit secret; the API server throws on startup if missing
+- The `.migration-backup/` directory contains a pre-migration snapshot; ignore its artifacts and workflows
+- Sessions are stored in the `sessions` Postgres table (created by `connect-pg-simple` at runtime)
 
 ## Pointers
 
 - See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
+- LMS spec: `attached_assets/Pasted-Build-a-complete-production-ready-Learning-Management-S_1784367527240.txt`

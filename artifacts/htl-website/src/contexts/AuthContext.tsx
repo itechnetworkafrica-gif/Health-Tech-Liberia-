@@ -17,7 +17,9 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-const API_BASE = "/api";
+// In production (Vercel), VITE_API_URL points to the Replit-deployed API.
+// In development (Replit), it falls back to the same-origin /api prefix.
+const API_BASE = (import.meta.env.VITE_API_URL ?? "") + "/api";
 
 async function apiFetch(path: string, options?: RequestInit) {
   const res = await fetch(`${API_BASE}${path}`, {

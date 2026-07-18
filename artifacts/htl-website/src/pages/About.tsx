@@ -2,21 +2,21 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Target, Eye, Linkedin } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 
-import aboutHero1 from "../assets/about_hero_1.jpg";
-import aboutHero2 from "../assets/about_hero_2.jpg";
-import teamMakessa from "../assets/team_makessa.jpg";
-import teamWilmot from "../assets/team_wilmot.jpg";
-import teamBoakai from "../assets/team_boakai.jpg";
+import teamWilmot from "@assets/1784333782085_1784333815122.jpg";
+import teamBoakai from "@assets/1784333629096_1784333815217.jpg";
+import teamMakessa from "@assets/1784333552163_1784333815255.jpg";
+import orgGroup from "@assets/1784333574982_1784333815299.jpg";
+import orgTeam3 from "@assets/1784333542402_1784333815340.jpg";
 
 const ABOUT_SLIDES: HeroSlide[] = [
   {
-    image: aboutHero1,
+    image: orgGroup,
     eyebrow: "Our Identity",
     heading: "About Health Tech Liberia",
     subtext: "We are a passionate team dedicated to redefining health access and equity through innovation.",
   },
   {
-    image: aboutHero2,
+    image: orgTeam3,
     eyebrow: "Our Approach",
     heading: "Bridging Health & Technology",
     subtext: "Empowering communities with digital tools, education, and steadfast advocacy.",
@@ -41,9 +41,9 @@ export default function About() {
   ];
 
   const team = [
-    { name: "Makessa Bility", role: "Founder", img: teamMakessa, bio: "Passionate about health equity and empowering women in tech." },
-    { name: "Wilmot Kerkulah", role: "Admin & CTO", img: teamWilmot, bio: "Driving digital innovation and robust technical infrastructure." },
-    { name: "Boakai Kamara", role: "Co-Founder", img: teamBoakai, bio: "Championing community engagement and strategic partnerships." },
+    { name: "Makessa Bility", role: "Founder", img: teamMakessa, bio: "A visionary health advocate driving digital transformation across Liberia's healthcare system.", position: "object-top" },
+    { name: "Wilmot Kerkulah", role: "Admin & CTO", img: teamWilmot, bio: "Tech strategist building the digital backbone of HTL's operations and innovation pipeline.", position: "object-cover object-center" },
+    { name: "Boakai Kamara", role: "Co-Founder", img: teamBoakai, bio: "Community mobilizer and strategic leader amplifying HTL's impact across Liberia.", position: "object-top" },
   ];
 
   return (
@@ -177,11 +177,11 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <div className="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 bg-white/5 relative shadow-xl">
+                <div className="aspect-[3/4] rounded-[2rem] overflow-hidden mb-6 bg-white/5 relative shadow-xl">
                   <img 
                     src={member.img} 
                     alt={member.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className={`w-full h-full ${member.position} group-hover:scale-105 transition-transform duration-700`}
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A2D7A] via-transparent to-transparent opacity-60"></div>

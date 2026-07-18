@@ -7,11 +7,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
-import hero1 from "../assets/hero_1.jpg";
+import orgTeam3 from "@assets/1784333542402_1784333815340.jpg";
 
 const CONTACT_SLIDES: HeroSlide[] = [
   {
-    image: hero1,
+    image: orgTeam3,
     eyebrow: "Reach Out",
     heading: "Contact Us",
     subtext: "We'd love to hear from you. Reach out with questions or partnership inquiries.",
@@ -71,8 +71,8 @@ export default function Contact() {
                   </div>
                   <div className="flex flex-col justify-center h-16">
                     <h3 className="text-xl font-bold text-gray-900 mb-1">Call / WhatsApp</h3>
-                    <a href="tel:+231888762857" className="text-gray-600 font-medium hover:text-primary transition-colors">
-                      +231 888 762 857
+                    <a href="tel:+231776836689" className="text-gray-600 font-medium hover:text-primary transition-colors">
+                      +231 776 836 689
                     </a>
                   </div>
                 </div>

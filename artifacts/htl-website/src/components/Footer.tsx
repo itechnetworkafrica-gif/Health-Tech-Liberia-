@@ -29,7 +29,7 @@ export default function Footer() {
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary hover:scale-110 transition-all">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="https://wa.me/231888762857" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#25D366] hover:scale-110 transition-all">
+              <a href="https://wa.me/231776836689" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#25D366] hover:scale-110 transition-all">
                 <Phone className="w-5 h-5" />
               </a>
             </div>
@@ -96,7 +96,7 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col justify-center h-10">
                   <span className="text-white text-sm font-bold leading-tight">Phone / WhatsApp</span>
-                  <a href="tel:+231888762857" className="text-blue-200/90 text-sm hover:text-white transition-colors leading-tight">+231 888 762 857</a>
+                  <a href="tel:+231776836689" className="text-blue-200/90 text-sm hover:text-white transition-colors leading-tight">+231 776 836 689</a>
                 </div>
               </li>
               <li className="flex items-start gap-4">

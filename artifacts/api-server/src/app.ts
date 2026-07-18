@@ -3,6 +3,8 @@ import cors from "cors";
 import pinoHttp from "pino-http";
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
+import { join } from "node:path";
+import { existsSync } from "node:fs";
 import { pool } from "@workspace/db";
 import router from "./routes";
 import { logger } from "./lib/logger";
@@ -63,6 +65,19 @@ app.use(
   }),
 );
 
+// In production: serve the built React frontend static assets
+const frontendDist = join(process.cwd(), "artifacts/htl-website/dist/public");
+if (process.env.NODE_ENV === "production" && existsSync(frontendDist)) {
+  app.use(express.static(frontendDist));
+}
+
 app.use("/api", router);
+
+// In production: SPA catch-all — any non-API route returns index.html
+if (process.env.NODE_ENV === "production" && existsSync(frontendDist)) {
+  app.get(/^(?!\/api).*/, (_req, res) => {
+    res.sendFile(join(frontendDist, "index.html"));
+  });
+}
 
 export default app;

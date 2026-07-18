@@ -25,6 +25,7 @@ import GetInvolved from "@/pages/GetInvolved";
 import Donate from "@/pages/Donate";
 import Contact from "@/pages/Contact";
 import Certificates from "@/pages/Certificates";
+import ELearning from "@/pages/ELearning";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 
@@ -54,6 +55,7 @@ function Router() {
           <Route path="/donate" component={Donate} />
           <Route path="/contact" component={Contact} />
           <Route path="/certificates" component={Certificates} />
+          <Route path="/elearning" component={ELearning} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
           <Route component={NotFound} />

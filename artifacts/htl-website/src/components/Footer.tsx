@@ -115,12 +115,26 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-blue-200/80 text-sm text-center md:text-left font-medium">
-            &copy; {new Date().getFullYear()} Health Tech Liberia. All rights reserved.
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+            <p className="text-blue-200/80 text-sm text-center md:text-left font-medium">
+              &copy; {new Date().getFullYear()} Health Tech Liberia. All rights reserved.
+            </p>
+            <span className="hidden md:inline text-white/20">·</span>
+            <p className="text-blue-200/60 text-xs text-center">
+              Built by{" "}
+              <a
+                href="https://gotecx.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#C9972D] hover:text-white transition-colors font-semibold"
+              >
+                Gotecx
+              </a>
+            </p>
+          </div>
           <div className="flex items-center gap-6 text-sm text-blue-200/80 font-medium">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

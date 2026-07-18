@@ -49,9 +49,11 @@ export default function Programs() {
                   key={program.slug}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.97 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="bg-white rounded-2xl border border-blue-100 p-8 flex flex-col gap-6 hover:shadow-xl hover:border-[#0A3FAF]/30 transition-all group h-full"
+                  className="bg-white rounded-2xl border border-blue-100 p-8 flex flex-col gap-6 hover:shadow-xl hover:border-[#0A3FAF]/30 transition-shadow group h-full cursor-pointer"
                 >
                   <div className="w-16 h-16 rounded-xl border-2 border-[#0A3FAF]/20 flex items-center justify-center text-[#0A3FAF]">
                     <Icon className="w-8 h-8" strokeWidth={1.5} />

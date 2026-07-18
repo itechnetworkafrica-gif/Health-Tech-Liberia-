@@ -25,6 +25,8 @@ import GetInvolved from "@/pages/GetInvolved";
 import Donate from "@/pages/Donate";
 import Contact from "@/pages/Contact";
 import Certificates from "@/pages/Certificates";
+import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +54,8 @@ function Router() {
           <Route path="/donate" component={Donate} />
           <Route path="/contact" component={Contact} />
           <Route path="/certificates" component={Certificates} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/terms" component={Terms} />
           <Route component={NotFound} />
         </Switch>
       </main>

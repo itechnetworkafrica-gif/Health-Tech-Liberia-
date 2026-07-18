@@ -54,8 +54,8 @@ export default function HeroSlider({ slides, height = "100vh" }: HeroSliderProps
             className="w-full h-full object-cover"
           />
           {/* Dark Navy Overlay */}
-          <div className="absolute inset-0 bg-[#0A2D7A]/65 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A2D7A]/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-[#0A2D7A]/78 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A2D7A]/90 via-[#0A2D7A]/20 to-transparent" />
         </motion.div>
       </AnimatePresence>
 

@@ -316,9 +316,11 @@ export default function Home() {
                   key={program.slug}
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.97 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.055 }}
-                  className="bg-white rounded-2xl border border-blue-100 p-7 flex flex-col gap-5 hover:shadow-lg hover:border-[#0A3FAF]/25 transition-all group h-full"
+                  className="bg-white rounded-2xl border border-blue-100 p-7 flex flex-col gap-5 hover:shadow-lg hover:border-[#0A3FAF]/25 transition-shadow group h-full cursor-pointer"
                 >
                   <div className="w-14 h-14 rounded-xl border border-[#0A3FAF]/20 flex items-center justify-center text-[#0A3FAF] bg-[#F4F7FF] group-hover:bg-[#0A3FAF] group-hover:text-white transition-colors">
                     <Icon className="w-7 h-7" strokeWidth={1.5} />
@@ -367,9 +369,11 @@ export default function Home() {
                 key={i}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.97 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-all group flex flex-col h-full"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-shadow group flex flex-col h-full cursor-pointer"
               >
                 <div className="aspect-video overflow-hidden">
                   <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />

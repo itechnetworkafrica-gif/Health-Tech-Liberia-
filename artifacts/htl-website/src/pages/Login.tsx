@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
-import { Eye, EyeOff, GraduationCap, Loader2 } from "lucide-react";
+import { Eye, EyeOff, LogIn, Loader2 } from "lucide-react";
 
 export default function Login() {
   const { login } = useAuth();
@@ -18,7 +18,7 @@ export default function Login() {
     setLoading(true);
     try {
       await login(email, password);
-      navigate("/elearning");
+      navigate("/");
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Login failed");
     } finally {
@@ -34,10 +34,10 @@ export default function Login() {
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0A2D7A] to-[#0A3FAF] px-8 py-8 text-center">
             <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <GraduationCap className="w-9 h-9 text-white" />
+              <LogIn className="w-9 h-9 text-white" />
             </div>
             <h1 className="text-2xl font-heading font-black text-white">Welcome Back</h1>
-            <p className="text-blue-200 mt-1 text-sm">Sign in to access your courses</p>
+            <p className="text-blue-200 mt-1 text-sm">Sign in to your account</p>
           </div>
 
           {/* Form */}

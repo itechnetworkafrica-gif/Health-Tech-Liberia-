@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Facebook, Linkedin, Mail, Phone, MapPin, ArrowRight, Award, GraduationCap } from "lucide-react";
+import { Facebook, Linkedin, Mail, Phone, MapPin, ArrowRight, Award } from "lucide-react";
 import htlLogo from "@assets/1784331190411_1784331478727.jpg";
 
 export default function Footer() {
@@ -46,7 +46,6 @@ export default function Footer() {
                 { label: "Research", path: "/research" },
                 { label: "News & Media", path: "/news" },
                 { label: "Certificate Portal", path: "/certificates" },
-                { label: "E-Learning Platform", path: "/elearning" },
               ].map((link, i) => (
                 <li key={i}>
                   <Link href={link.path} className="text-blue-200/90 hover:text-white transition-colors text-sm flex items-center gap-2 group">
@@ -112,25 +111,6 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-        </div>
-
-        {/* E-Learning CTA Banner */}
-        <div className="mb-10 rounded-2xl bg-white/10 border border-white/20 p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#0A3FAF] flex items-center justify-center shrink-0">
-              <GraduationCap className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <p className="font-heading font-bold text-white text-base leading-tight">HTL E-Learning Platform</p>
-              <p className="text-blue-200/80 text-sm">20 digital health courses · Free enrolment · Certified</p>
-            </div>
-          </div>
-          <Link
-            href="/elearning"
-            className="shrink-0 bg-[#0A3FAF] hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-xl flex items-center gap-2 transition-all text-sm whitespace-nowrap"
-          >
-            Start Learning <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
 
         {/* Bottom Bar */}

@@ -4,7 +4,7 @@ import {
   Menu, X, ChevronDown, Heart,
   Monitor, FlaskConical, Scale, Brain, Leaf,
   Banknote, HeartPulse, Users, Megaphone,
-  Award, GraduationCap, LogIn, LogOut, User,
+  Award, LogIn, LogOut, User,
 } from "lucide-react";
 import htlLogo from "@assets/1784331190411_1784331478727.jpg";
 import { motion, AnimatePresence } from "framer-motion";
@@ -143,11 +143,6 @@ export default function Navbar() {
               <Link href="/projects" className={navLinkClass("/projects")}>Projects</Link>
               <Link href="/research" className={navLinkClass("/research")}>Research</Link>
 
-              {/* E-Learning link */}
-              <Link href="/elearning" className={`flex items-center gap-1.5 ${navLinkClass("/elearning")}`}>
-                <GraduationCap className="w-4 h-4" /> E-Learning
-              </Link>
-
               {/* More Dropdown */}
               <div
                 className="relative group h-full flex items-center"
@@ -216,9 +211,6 @@ export default function Navbar() {
                             <p className="text-xs text-gray-500 truncate">{user.email}</p>
                           </div>
                           <div className="p-2">
-                            <Link href="/elearning" className="flex items-center gap-2 px-3 py-2.5 text-sm font-semibold text-gray-700 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors">
-                              <GraduationCap className="w-4 h-4" /> My Courses
-                            </Link>
                             <button
                               onClick={logout}
                               className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-semibold text-red-500 hover:bg-red-50 rounded-xl transition-colors"
@@ -328,11 +320,6 @@ export default function Navbar() {
 
                 <Link href="/projects" className="text-xl font-heading font-bold text-gray-900 p-4 border-b border-gray-100 hover:bg-slate-50 rounded-xl">Projects</Link>
                 <Link href="/research" className="text-xl font-heading font-bold text-gray-900 p-4 border-b border-gray-100 hover:bg-slate-50 rounded-xl">Research</Link>
-
-                {/* E-Learning in mobile menu */}
-                <Link href="/elearning" className="text-xl font-heading font-bold text-[#0A3FAF] p-4 border-b border-primary/20 hover:bg-primary/5 rounded-xl flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5" /> E-Learning
-                </Link>
 
                 <div className="border-b border-gray-100 rounded-xl overflow-hidden">
                   <button

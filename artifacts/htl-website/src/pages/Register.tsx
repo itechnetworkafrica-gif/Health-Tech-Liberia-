@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
-import { Eye, EyeOff, GraduationCap, Loader2, CheckCircle2 } from "lucide-react";
+import { Eye, EyeOff, UserPlus, Loader2, CheckCircle2 } from "lucide-react";
 
 export default function Register() {
   const { register } = useAuth();
@@ -41,7 +41,7 @@ export default function Register() {
     setLoading(true);
     try {
       await register(name, email, password);
-      navigate("/elearning");
+      navigate("/");
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Registration failed");
     } finally {
@@ -57,15 +57,15 @@ export default function Register() {
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0A2D7A] to-[#0A3FAF] px-8 py-8 text-center">
             <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <GraduationCap className="w-9 h-9 text-white" />
+              <UserPlus className="w-9 h-9 text-white" />
             </div>
             <h1 className="text-2xl font-heading font-black text-white">Create Your Account</h1>
-            <p className="text-blue-200 mt-1 text-sm">Join 500+ digital health learners</p>
+            <p className="text-blue-200 mt-1 text-sm">Join the Health Tech Liberia community</p>
           </div>
 
           {/* Benefits */}
           <div className="bg-blue-50 px-8 py-4 flex flex-wrap gap-x-6 gap-y-2">
-            {["Access 20 free courses", "Earn certificates", "Track your progress"].map((b) => (
+            {["Stay updated on programs", "Access resources", "Get involved"].map((b) => (
               <span key={b} className="flex items-center gap-1.5 text-xs font-semibold text-[#0A3FAF]">
                 <CheckCircle2 className="w-3.5 h-3.5" /> {b}
               </span>

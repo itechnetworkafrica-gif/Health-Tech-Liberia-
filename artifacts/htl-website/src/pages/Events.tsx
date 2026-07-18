@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import hero2 from "../assets/hero_2.jpg";
+import SEO from "@/components/SEO";
 
 const EVENTS_SLIDES: HeroSlide[] = [
   {
@@ -15,6 +16,12 @@ const EVENTS_SLIDES: HeroSlide[] = [
 export default function Events() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="Events"
+      description="Stay updated on Health Tech Liberia's upcoming events, workshops, conferences, and community health programs across Liberia and West Africa."
+      canonical="/events"
+      keywords="Health Tech Liberia events, health events Liberia, digital health workshops, health conference Africa"
+      />
       <HeroSlider slides={EVENTS_SLIDES} height="50dvh" />
 
       <section className="py-24 bg-[#F4F7FF]">

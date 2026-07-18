@@ -3,6 +3,7 @@ import { Mic, PlayCircle, Calendar, ArrowUpRight } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import { Link } from "wouter";
 import hero4 from "../assets/hero_4.jpg";
+import SEO from "@/components/SEO";
 
 const NEWS_SLIDES: HeroSlide[] = [
   {
@@ -16,6 +17,12 @@ const NEWS_SLIDES: HeroSlide[] = [
 export default function News() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="News"
+      description="Read the latest news and updates from Health Tech Liberia on digital health innovations, community programs, and health technology developments in West Africa."
+      canonical="/news"
+      keywords="Health Tech Liberia news, health news Liberia, digital health updates West Africa"
+      />
       <HeroSlider slides={NEWS_SLIDES} height="50dvh" />
 
       {/* Podcast Highlight */}

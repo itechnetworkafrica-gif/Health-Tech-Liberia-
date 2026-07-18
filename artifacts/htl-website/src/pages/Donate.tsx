@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Heart, Building2, Smartphone, Copy, CheckCircle, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import SEO from "@/components/SEO";
 
 const impactMessages: Record<string, string> = {
   "25": "Provides a menstrual hygiene kit for one adolescent girl for an entire year.",
@@ -40,6 +41,12 @@ export default function Donate() {
 
   return (
     <div className="min-h-screen bg-[#F4F7FF] pt-32 pb-24">
+      <SEO
+      title="Donate"
+      description="Support Health Tech Liberia's mission by donating to advance digital health, STEM education, and community wellness programs across Liberia and West Africa."
+      canonical="/donate"
+      keywords="donate Health Tech Liberia, support health Liberia, digital health donation West Africa"
+      />
       <section className="py-12">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
 

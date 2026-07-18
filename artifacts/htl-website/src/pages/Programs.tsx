@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowRight, Activity, Microscope, Users, Heart, Leaf, Globe, Shield, ShieldAlert, Megaphone } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import hero1 from "../assets/hero_1.jpg";
+import SEO from "@/components/SEO";
 
 const PROGRAM_SLIDES: HeroSlide[] = [
   {
@@ -28,6 +29,12 @@ const PROGRAMS = [
 export default function Programs() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="Our Programs"
+      description="Explore Health Tech Liberia's 9 integrated health programs spanning digital health, STEM education, mental health, gender equality, and more across Liberia."
+      canonical="/programs"
+      keywords="Health Tech Liberia programs, digital health programs Liberia, STEM education, gender equality health"
+      />
       <HeroSlider slides={PROGRAM_SLIDES} height="60dvh" />
 
       <section className="py-24 bg-[#F4F7FF]">

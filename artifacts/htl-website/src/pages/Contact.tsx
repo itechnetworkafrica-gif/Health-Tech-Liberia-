@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
+import SEO from "@/components/SEO";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -33,6 +34,12 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-[#F4F7FF]">
+      <SEO
+      title="Contact Us"
+      description="Get in touch with Health Tech Liberia. Reach out to our team about partnerships, programs, volunteer opportunities, or any questions about our health initiatives."
+      canonical="/contact"
+      keywords="contact Health Tech Liberia, HTL contact, reach health tech Liberia"
+      />
       <PageHeader 
         title="Contact Us" 
         description="We'd love to hear from you. Reach out with questions or partnership inquiries."

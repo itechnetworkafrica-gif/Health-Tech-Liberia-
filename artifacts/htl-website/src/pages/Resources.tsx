@@ -1,6 +1,7 @@
 import { Download, FileText, ExternalLink } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import hero3 from "../assets/hero_3.jpg";
+import SEO from "@/components/SEO";
 
 // Placeholder download URLs — update each href with the real Google Drive / Dropbox / S3 link when ready
 const RESOURCE_CATEGORIES = [
@@ -82,6 +83,12 @@ const RESOURCES_SLIDES: HeroSlide[] = [
 export default function Resources() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="Resources"
+      description="Access Health Tech Liberia's curated digital health resources, guides, publications, and educational materials for health professionals and communities in Liberia."
+      canonical="/resources"
+      keywords="Health Tech Liberia resources, digital health resources Liberia, health education materials"
+      />
       <HeroSlider slides={RESOURCES_SLIDES} height="50dvh" />
 
       <section className="py-24 bg-[#F4F7FF]">

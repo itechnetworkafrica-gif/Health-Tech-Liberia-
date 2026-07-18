@@ -1,0 +1,1 @@
+- [HTL SEO setup](htl-seo.md) — react-helmet-async manages per-page meta; index.html has base fallback + JSON-LD; all 18 pages have SEO component as first child inside root div.

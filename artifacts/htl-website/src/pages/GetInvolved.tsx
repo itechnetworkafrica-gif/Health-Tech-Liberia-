@@ -8,6 +8,7 @@ import { useToast } from "@/components/ui/use-toast";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import { Send, Users, Laptop, Heart, ArrowRight } from "lucide-react";
 import hero2 from "../assets/hero_2.jpg";
+import SEO from "@/components/SEO";
 
 const GET_INVOLVED_SLIDES: HeroSlide[] = [
   {
@@ -43,6 +44,12 @@ export default function GetInvolved() {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="Get Involved"
+      description="Join Health Tech Liberia's mission to transform healthcare in Liberia. Volunteer, partner, donate, or collaborate with us to make a lasting health impact."
+      canonical="/get-involved"
+      keywords="get involved Health Tech Liberia, volunteer Liberia health, health partnership opportunity"
+      />
       <HeroSlider slides={GET_INVOLVED_SLIDES} height="50dvh" />
 
       <section className="py-24 bg-[#F4F7FF]">

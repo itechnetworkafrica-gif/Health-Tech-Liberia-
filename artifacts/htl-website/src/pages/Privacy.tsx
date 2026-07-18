@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Shield } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const SECTIONS = [
   {
@@ -43,6 +44,11 @@ const SECTIONS = [
 export default function Privacy() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="Privacy Policy"
+      description="Read Health Tech Liberia's privacy policy to understand how we collect, use, and protect your personal information on our platform."
+      canonical="/privacy"
+      />
       {/* Hero */}
       <section className="bg-[#0A2D7A] text-white py-20 relative overflow-hidden">
         <div className="absolute top-0 left-8 text-[160px] font-serif leading-none bg-gradient-to-b from-[#0A3FAF] to-[#7C3AED] bg-clip-text text-transparent select-none">

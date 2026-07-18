@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FileText } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const SECTIONS = [
   {
@@ -47,6 +48,11 @@ const SECTIONS = [
 export default function Terms() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="Terms of Service"
+      description="Review Health Tech Liberia's terms of service governing use of our website, programs, and digital health platforms."
+      canonical="/terms"
+      />
       {/* Hero */}
       <section className="bg-[#0A2D7A] text-white py-20 relative overflow-hidden">
         <div className="absolute top-0 left-8 text-[160px] font-serif leading-none bg-gradient-to-b from-[#0A3FAF] to-[#7C3AED] bg-clip-text text-transparent select-none">

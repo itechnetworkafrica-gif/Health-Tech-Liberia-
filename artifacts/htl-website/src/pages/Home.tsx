@@ -12,6 +12,7 @@ import orgGroup   from "@assets/1784333574982_1784333815299.jpg";
 import orgTeam3   from "@assets/1784333542402_1784333815340.jpg";
 import orgEvent1  from "@assets/1784333534721_1784333815375.jpg";
 import orgEvent2  from "@assets/1784333518590_1784333815409.jpg";
+import SEO from "@/components/SEO";
 
 const HOME_SLIDES: HeroSlide[] = [
   {
@@ -152,6 +153,11 @@ export default function Home() {
 
   return (
     <div className="min-h-[100dvh] bg-white">
+      <SEO
+      description="Health Tech Liberia (HTL) is a Liberian nonprofit driving healthcare transformation through technology, research, and innovation across West Africa."
+      canonical="/"
+      keywords="Health Tech Liberia, digital health Liberia, healthcare technology Africa, HTL, health innovation West Africa"
+      />
 
       {/* ── HERO ── */}
       <div className="relative">

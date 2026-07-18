@@ -10,6 +10,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import CookieBanner from "@/components/CookieBanner";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 import Home from "@/pages/Home";
 import About from "@/pages/About";
@@ -28,6 +29,8 @@ import Certificates from "@/pages/Certificates";
 import ELearning from "@/pages/ELearning";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +59,8 @@ function Router() {
           <Route path="/contact" component={Contact} />
           <Route path="/certificates" component={Certificates} />
           <Route path="/elearning" component={ELearning} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
           <Route component={NotFound} />
@@ -71,7 +76,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-          <Router />
+          <AuthProvider>
+            <Router />
+          </AuthProvider>
         </WouterRouter>
         <Toaster />
       </TooltipProvider>

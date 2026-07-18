@@ -7,6 +7,8 @@ import { Route, Switch, Router as WouterRouter } from 'wouter';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
+import CookieBanner from "@/components/CookieBanner";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 import Home from "@/pages/Home";
@@ -32,6 +34,8 @@ function Router() {
       <ScrollToTop />
       <Navbar />
       <WhatsAppButton />
+      <ScrollToTopButton />
+      <CookieBanner />
       <main className="flex-grow pt-[116px]">
         <Switch>
           <Route path="/" component={Home} />

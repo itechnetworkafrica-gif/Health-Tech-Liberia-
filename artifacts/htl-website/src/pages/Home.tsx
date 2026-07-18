@@ -84,9 +84,30 @@ const TESTIMONIALS = [
 ];
 
 const NEWS = [
-  { title: "HTL Launches Digital Health Literacy Campaign in Rural Clinics", date: "Oct 15, 2024", cat: "Initiative", excerpt: "Over 150 health workers gathered to learn modern digital charting methods that are already improving patient outcomes across the country." },
-  { title: "Empowering 100+ Girls: The Next Phase of Green Health Mentorship", date: "Sep 28, 2024", cat: "Program Update", excerpt: "The latest cohort in Zorzor focuses on climate-smart reproductive health education and community leadership skills." },
-  { title: "World Mental Health Day: Reaching Youth Across Montserrado", date: "Oct 10, 2024", cat: "Events", excerpt: "A day dedicated to dismantling stigma, creating safe spaces, and training a new generation of peer counselors." },
+  {
+    title: "HTL Launches Digital Health Literacy Campaign in Rural Clinics",
+    date: "Oct 15, 2024",
+    cat: "Initiative",
+    excerpt: "Over 150 health workers gathered to learn modern digital charting methods that are already improving patient outcomes and saving lives across Liberia.",
+    img: orgEvent1,
+    featured: true,
+  },
+  {
+    title: "Empowering 100+ Girls: The Next Phase of Green Health Mentorship",
+    date: "Sep 28, 2024",
+    cat: "Program Update",
+    excerpt: "The latest cohort in Zorzor focuses on climate-smart reproductive health education and community leadership skills.",
+    img: orgTeam3,
+    featured: false,
+  },
+  {
+    title: "World Mental Health Day: Reaching Youth Across Montserrado",
+    date: "Oct 10, 2024",
+    cat: "Events",
+    excerpt: "A day dedicated to dismantling stigma, creating safe spaces, and training a new generation of peer counselors.",
+    img: orgEvent2,
+    featured: false,
+  },
 ];
 
 const WHO_WE_ARE_POINTS = [
@@ -412,45 +433,107 @@ export default function Home() {
       </section>
 
       {/* ── LATEST NEWS ── */}
-      <section className="py-28 bg-[#F4F7FF]">
+      <section className="py-28 bg-white">
         <div className="container mx-auto px-4 md:px-6">
+          {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <div>
-              <span className="inline-block bg-white border border-blue-100 text-gray-500 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-5">
+              <span className="inline-block bg-[#F4F7FF] border border-blue-100 text-[#0A3FAF] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-5">
                 STAY INFORMED
               </span>
               <h3 className="text-4xl md:text-5xl font-heading font-bold text-[#0A2D7A]">Latest from HTL</h3>
+              <p className="text-gray-500 mt-3 max-w-lg">News, updates, and stories from our programs and communities across Liberia.</p>
             </div>
-            <Link href="/news" className="text-[#0A3FAF] font-semibold hover:text-[#0A2D7A] transition-colors flex items-center gap-1 text-sm">
-              View All <ArrowRight className="w-4 h-4" />
+            <Link
+              href="/news"
+              className="inline-flex items-center gap-2 border border-[#0A3FAF] text-[#0A3FAF] px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#0A3FAF] hover:text-white transition-all shrink-0"
+            >
+              View All News <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
-            {NEWS.map((n, i) => (
+          {/* Editorial grid: featured large + 2 stacked */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+            {/* Featured article */}
+            {NEWS.filter(n => n.featured).map((n, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
-                className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition-all group flex flex-col h-full"
+                className="lg:col-span-3 group relative rounded-3xl overflow-hidden bg-[#080C14] flex flex-col min-h-[480px] cursor-pointer shadow-xl"
               >
-                {/* Top accent stripe */}
-                <div className="h-1 w-full bg-gradient-to-r from-[#0A3FAF] to-[#7C3AED]" />
-                <div className="p-7 flex flex-col gap-3 flex-grow">
-                  <span className="border border-gray-200 text-gray-400 text-[11px] px-3 py-1 rounded-full self-start font-medium">{n.cat}</span>
-                  <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest flex items-center gap-1.5">
-                    <Calendar className="w-3 h-3" /> {n.date}
-                  </p>
-                  <h3 className="text-lg font-heading font-semibold text-gray-900 leading-snug group-hover:text-[#0A3FAF] transition-colors">{n.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed flex-grow">{n.excerpt}</p>
-                  <Link href="/news" className="text-[11px] font-bold uppercase tracking-widest text-gray-700 flex items-center gap-1 hover:text-[#0A3FAF] transition-colors mt-2">
-                    READ MORE <ArrowUpRight className="w-3.5 h-3.5" />
+                {/* Background image */}
+                <div className="absolute inset-0">
+                  <img src={n.img} alt={n.title} className="w-full h-full object-cover opacity-45 group-hover:opacity-55 group-hover:scale-105 transition-all duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-[#080C14]/60 to-transparent" />
+                </div>
+                {/* Content */}
+                <div className="relative z-10 flex flex-col justify-end h-full p-8 md:p-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="bg-[#C9972D] text-white text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                      {n.cat}
+                    </span>
+                    <span className="text-white/50 text-xs flex items-center gap-1.5 font-medium">
+                      <Calendar className="w-3.5 h-3.5" /> {n.date}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-white leading-snug mb-4 group-hover:text-blue-100 transition-colors">
+                    {n.title}
+                  </h3>
+                  <p className="text-white/65 text-sm leading-relaxed mb-6 max-w-xl">{n.excerpt}</p>
+                  <Link
+                    href="/news"
+                    className="inline-flex items-center gap-2 bg-white text-[#0A2D7A] px-5 py-2.5 rounded-full font-bold text-sm w-max hover:bg-[#C9972D] hover:text-white transition-all"
+                  >
+                    Read Story <ArrowUpRight className="w-4 h-4" />
                   </Link>
                 </div>
               </motion.div>
             ))}
+
+            {/* Side articles */}
+            <div className="lg:col-span-2 flex flex-col gap-6">
+              {NEWS.filter(n => !n.featured).map((n, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-[#0A3FAF]/20 hover:shadow-lg transition-all flex flex-col"
+                >
+                  {/* Image */}
+                  <div className="aspect-[16/7] overflow-hidden relative">
+                    <img
+                      src={n.img}
+                      alt={n.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    <span className="absolute bottom-3 left-3 bg-[#0A2D7A] text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                      {n.cat}
+                    </span>
+                  </div>
+                  {/* Body */}
+                  <div className="p-5 flex flex-col gap-2 flex-grow">
+                    <p className="text-gray-400 text-xs font-semibold flex items-center gap-1.5">
+                      <Calendar className="w-3 h-3" /> {n.date}
+                    </p>
+                    <h3 className="font-heading font-bold text-gray-900 text-base leading-snug group-hover:text-[#0A3FAF] transition-colors flex-grow">
+                      {n.title}
+                    </h3>
+                    <Link
+                      href="/news"
+                      className="text-[11px] font-bold uppercase tracking-widest text-[#0A3FAF] flex items-center gap-1 hover:gap-2 transition-all mt-1 w-max"
+                    >
+                      Read More <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

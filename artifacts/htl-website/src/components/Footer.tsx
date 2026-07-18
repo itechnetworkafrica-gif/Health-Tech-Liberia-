@@ -122,6 +122,8 @@ export default function Footer() {
             <span className="hidden md:inline text-white/20">·</span>
             <p className="text-blue-200/60 text-xs text-center">
               Built by{" "}
+              <span className="text-[#C9972D] font-semibold">iTech Network Africa</span>
+              {" | "}
               <a
                 href="https://gotecx.com"
                 target="_blank"

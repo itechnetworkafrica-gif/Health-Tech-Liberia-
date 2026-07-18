@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.output/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Replit-specific (not needed in Git)
+.replit
+replit.nix
+.upm/
+.cache/
+.config/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# AI-generated image cache (real photos in attached_assets/ are kept)
+attached_assets/generated_images/

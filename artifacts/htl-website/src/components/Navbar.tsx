@@ -4,12 +4,11 @@ import {
   Menu, X, ChevronDown, Heart,
   Monitor, FlaskConical, Scale, Brain, Leaf,
   Banknote, HeartPulse, Users, Megaphone,
-  Award, LogIn, LogOut, User,
+  Award,
 } from "lucide-react";
 import htlLogo from "@assets/1784331190411_1784331478727.jpg";
 import { motion, AnimatePresence } from "framer-motion";
 import TopBar from "./TopBar";
-import { useAuth } from "@/contexts/AuthContext";
 
 const PROGRAMS = [
   { name: "Digital Health & Innovation", slug: "digital-health", Icon: Monitor },
@@ -29,7 +28,6 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileAccordions, setMobileAccordions] = useState<Record<string, boolean>>({});
   const [location] = useLocation();
-  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,10 +52,6 @@ export default function Navbar() {
       isActive ? 'text-primary' : 'text-gray-700 hover:text-primary'
     } ${isScrolled ? '' : 'lg:text-gray-800 lg:hover:text-primary'}`;
   };
-
-  const initials = user?.name
-    ? user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
-    : "";
 
   return (
     <>
@@ -182,55 +176,6 @@ export default function Navbar() {
                 <Link href="/get-involved" className="text-sm font-bold text-primary hover:text-[#0A2D7A] transition-colors uppercase tracking-wider">
                   Get Involved
                 </Link>
-
-                {/* Auth section */}
-                {user ? (
-                  <div
-                    className="relative"
-                    onMouseEnter={() => setActiveDropdown('user')}
-                    onMouseLeave={() => setActiveDropdown(null)}
-                  >
-                    <button className="flex items-center gap-2 bg-[#0A3FAF]/10 hover:bg-[#0A3FAF]/20 text-[#0A3FAF] px-3 py-2 rounded-full font-bold text-sm transition-all">
-                      <div className="w-6 h-6 rounded-full bg-[#0A3FAF] text-white flex items-center justify-center text-xs font-black">
-                        {initials}
-                      </div>
-                      <span className="max-w-[80px] truncate">{user.name.split(" ")[0]}</span>
-                      <ChevronDown className="w-3.5 h-3.5" />
-                    </button>
-                    <AnimatePresence>
-                      {activeDropdown === 'user' && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 8 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute top-full right-0 mt-2 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
-                        >
-                          <div className="px-4 py-3 border-b border-gray-100">
-                            <p className="font-bold text-gray-900 text-sm truncate">{user.name}</p>
-                            <p className="text-xs text-gray-500 truncate">{user.email}</p>
-                          </div>
-                          <div className="p-2">
-                            <button
-                              onClick={logout}
-                              className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-semibold text-red-500 hover:bg-red-50 rounded-xl transition-colors"
-                            >
-                              <LogOut className="w-4 h-4" /> Sign Out
-                            </button>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    href="/login"
-                    className="flex items-center gap-1.5 bg-[#0A3FAF] text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-[#0A2D7A] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                  >
-                    <LogIn className="w-4 h-4" /> Login
-                  </Link>
-                )}
-
                 <Link href="/donate" className="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-[#0A2D7A] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                   <Heart className="w-4 h-4 fill-white/20" /> Donate
                 </Link>
@@ -239,15 +184,6 @@ export default function Navbar() {
 
             {/* Mobile Actions */}
             <div className="flex items-center gap-3 lg:hidden">
-              {user ? (
-                <div className="w-8 h-8 rounded-full bg-[#0A3FAF] text-white flex items-center justify-center text-xs font-black">
-                  {initials}
-                </div>
-              ) : (
-                <Link href="/login" className="bg-[#0A3FAF] text-white px-4 py-2 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-md">
-                  <LogIn className="w-3.5 h-3.5" /> Login
-                </Link>
-              )}
               <Link href="/donate" className="bg-primary text-white px-4 py-2 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-md">
                 <Heart className="w-3.5 h-3.5" /> Donate
               </Link>
@@ -271,19 +207,6 @@ export default function Navbar() {
               className="fixed inset-0 top-[72px] bg-white z-40 overflow-y-auto"
             >
               <div className="p-6 flex flex-col gap-2 pb-32">
-                {/* User info if logged in */}
-                {user && (
-                  <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-2xl mb-2">
-                    <div className="w-10 h-10 rounded-full bg-[#0A3FAF] text-white flex items-center justify-center text-sm font-black shrink-0">
-                      {initials}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="font-bold text-gray-900 truncate">{user.name}</p>
-                      <p className="text-xs text-gray-500 truncate">{user.email}</p>
-                    </div>
-                  </div>
-                )}
-
                 <Link href="/" className="text-xl font-heading font-bold text-gray-900 p-4 border-b border-gray-100 hover:bg-slate-50 rounded-xl">Home</Link>
                 <Link href="/about" className="text-xl font-heading font-bold text-gray-900 p-4 border-b border-gray-100 hover:bg-slate-50 rounded-xl">About</Link>
 
@@ -353,24 +276,7 @@ export default function Navbar() {
 
                 <Link href="/get-involved" className="text-xl font-heading font-bold text-primary p-4 border-b border-primary/20 hover:bg-primary/5 rounded-xl">Get Involved</Link>
 
-                <div className="mt-4 flex flex-col gap-3">
-                  {user ? (
-                    <button
-                      onClick={logout}
-                      className="flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-lg text-red-500 border border-red-200 hover:bg-red-50 transition-colors"
-                    >
-                      <LogOut className="w-5 h-5" /> Sign Out
-                    </button>
-                  ) : (
-                    <>
-                      <Link href="/register" className="bg-[#0A3FAF] text-white text-center py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-lg">
-                        <User className="w-5 h-5" /> Create Account
-                      </Link>
-                      <Link href="/login" className="border-2 border-[#0A3FAF] text-[#0A3FAF] text-center py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2">
-                        <LogIn className="w-5 h-5" /> Sign In
-                      </Link>
-                    </>
-                  )}
+                <div className="mt-4">
                   <Link href="/donate" className="bg-primary text-white text-center py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-lg">
                     <Heart className="w-5 h-5 fill-white/20" /> Make a Donation
                   </Link>

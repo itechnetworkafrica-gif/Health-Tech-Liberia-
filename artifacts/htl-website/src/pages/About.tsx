@@ -170,6 +170,37 @@ export default function About() {
         </div>
       </section>
 
+      {/* YouTube Short Embed */}
+      <section className="py-24 bg-[#F4F7FF]">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="inline-block bg-white border border-blue-100 text-gray-500 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+              SEE US IN ACTION
+            </span>
+            <h3 className="text-4xl md:text-5xl font-heading font-black text-gray-900">Watch Our Story</h3>
+            <p className="mt-4 text-lg text-gray-500">A glimpse into how Health Tech Liberia is transforming communities through technology and advocacy.</p>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex justify-center"
+          >
+            <div className="w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-black aspect-[9/16]">
+              <iframe
+                src="https://www.youtube.com/embed/6ddjAH_5ERQ?autoplay=0&rel=0&modestbranding=1"
+                title="Health Tech Liberia – Our Story"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+                style={{ border: "none" }}
+              />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Core Values */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">

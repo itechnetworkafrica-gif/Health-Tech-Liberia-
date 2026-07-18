@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mic, PlayCircle, Calendar } from "lucide-react";
+import { Mic, PlayCircle, Calendar, ArrowUpRight } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import { Link } from "wouter";
 import hero4 from "../assets/hero_4.jpg";

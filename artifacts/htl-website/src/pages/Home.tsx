@@ -122,17 +122,16 @@ function CountUp({ end, suffix }: { end: number; suffix: string }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
   useEffect(() => {
-    if (inView) {
-      let start = 0;
-      const duration = 2000;
-      const increment = end / (duration / 16);
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= end) { setCount(end); clearInterval(timer); }
-        else setCount(start);
-      }, 16);
-      return () => clearInterval(timer);
-    }
+    if (!inView) return;
+    let start = 0;
+    const duration = 2000;
+    const increment = end / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) { setCount(end); clearInterval(timer); }
+      else setCount(start);
+    }, 16);
+    return () => clearInterval(timer);
   }, [end, inView]);
   return <span ref={ref}>{Math.floor(count)}{suffix}</span>;
 }

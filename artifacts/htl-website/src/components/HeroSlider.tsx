@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
+import TypewriterText from "@/components/TypewriterText";
 
 export interface HeroSlide {
   image: string;
@@ -76,7 +77,12 @@ export default function HeroSlider({ slides, height = "100vh" }: HeroSliderProps
               )}
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-[1.1] mb-6 drop-shadow-lg">
-                {slides[currentIndex].heading}
+                <TypewriterText
+                  key={currentIndex}
+                  text={slides[currentIndex].heading}
+                  speed={32}
+                  delay={400}
+                />
               </h1>
               
               {slides[currentIndex].subtext && (

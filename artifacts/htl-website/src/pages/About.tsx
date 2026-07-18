@@ -4,7 +4,7 @@ import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 
 import teamWilmot from "@assets/1784333782085_1784333815122.jpg";
 import teamBoakai from "@assets/1784333629096_1784333815217.jpg";
-import teamMakessa from "@assets/1784333552163_1784333815255.jpg";
+import teamMakessa from "@assets/IMG-20260718-WA0003_1784345113970.jpg";
 import orgGroup from "@assets/1784333574982_1784333815299.jpg";
 import orgTeam3 from "@assets/1784333542402_1784333815340.jpg";
 
@@ -234,8 +234,8 @@ export default function About() {
                   <p className="text-gray-700 text-lg leading-relaxed relative z-10">{member.bio}</p>
                 </div>
                 <div className="bg-gradient-to-r from-[#0A3FAF] to-[#7C3AED] px-8 py-5 flex items-center gap-4 mt-auto">
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-lg shrink-0">
-                    {member.initial}
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30 shrink-0">
+                    <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
                   </div>
                   <div>
                     <div className="text-white font-bold text-base">{member.name}</div>

@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import {
   ArrowRight, Heart, Activity, Users,
   Microscope, Leaf, Globe, ShieldAlert, Shield,
-  Megaphone, ChevronRight, MapPin, Calendar
+  Megaphone, MapPin, Calendar, CheckCircle
 } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 
@@ -78,15 +78,22 @@ const PROJECTS = [
 ];
 
 const TESTIMONIALS = [
-  { quote: "The Green Health Mentorship changed my life. I learned how to turn waste into resources and gained the confidence to speak about my reproductive health.", name: "Sarah T.", role: "Mentorship Participant, Zorzor", initial: "S" },
-  { quote: "Thanks to HTL's training, our clinic now uses digital records efficiently — reducing errors and saving crucial time for every patient we serve.", name: "Emmanuel K.", role: "Frontline Health Worker, Rural Clinic", initial: "E" },
-  { quote: "The mental health seminar gave me a safe space to share my struggles. Now I am a peer counselor helping other youth in my community.", name: "Grace M.", role: "Youth Participant, Montserrado", initial: "G" }
+  { quote: "The Green Health Mentorship changed my life. I learned how to turn waste into resources and gained the confidence to speak about my reproductive health.", name: "Sarah T.", role: "Mentorship Participant, Zorzor", initial: "S", color: "from-[#0A3FAF] to-[#7C3AED]" },
+  { quote: "Thanks to HTL's training, our clinic now uses digital records efficiently — reducing errors and saving crucial time for every patient we serve.", name: "Emmanuel K.", role: "Frontline Health Worker, Rural Clinic", initial: "E", color: "from-[#0A7A3A] to-[#0A3FAF]" },
+  { quote: "The mental health seminar gave me a safe space to share my struggles. Now I am a peer counselor helping other youth in my community.", name: "Grace M.", role: "Youth Participant, Montserrado", initial: "G", color: "from-[#C9972D] to-[#0A3FAF]" }
 ];
 
 const NEWS = [
   { title: "HTL Launches Digital Health Literacy Campaign in Rural Clinics", date: "Oct 15, 2024", cat: "Initiative", excerpt: "Over 150 health workers gathered to learn modern digital charting methods that are already improving patient outcomes across the country." },
   { title: "Empowering 100+ Girls: The Next Phase of Green Health Mentorship", date: "Sep 28, 2024", cat: "Program Update", excerpt: "The latest cohort in Zorzor focuses on climate-smart reproductive health education and community leadership skills." },
   { title: "World Mental Health Day: Reaching Youth Across Montserrado", date: "Oct 10, 2024", cat: "Events", excerpt: "A day dedicated to dismantling stigma, creating safe spaces, and training a new generation of peer counselors." },
+];
+
+const WHO_WE_ARE_POINTS = [
+  "Technology-driven healthcare solutions for Liberian communities",
+  "Comprehensive research and evidence-based health advocacy",
+  "Youth and women empowerment through STEM and mentorship",
+  "Sustainable, community-led digital health programs",
 ];
 
 function CountUp({ end, suffix }: { end: number; suffix: string }) {
@@ -115,52 +122,48 @@ export default function Home() {
   useEffect(() => {
     let start = Date.now();
     const duration = 5000;
-    
     const timer = setInterval(() => {
       let elapsed = Date.now() - start;
-      if (elapsed >= duration) {
-        start = Date.now();
-        elapsed = 0;
-      }
+      if (elapsed >= duration) { start = Date.now(); elapsed = 0; }
       setProgress((elapsed / duration) * 100);
     }, 16);
-    
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="min-h-[100dvh] bg-white">
+
+      {/* ── HERO ── */}
       <div className="relative">
         <HeroSlider slides={HOME_SLIDES} height="100dvh" />
-        <div 
-          className="absolute bottom-0 left-0 h-1 bg-[#C9972D] z-30" 
-          style={{ width: `${progress}%` }} 
-        />
+        <div className="absolute bottom-0 left-0 h-1 bg-[#C9972D] z-30" style={{ width: `${progress}%` }} />
       </div>
 
-      {/* SECTION 2: Impact Numbers */}
-      <section className="py-20 bg-white relative overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-          <span className="inline-block bg-gray-100 text-gray-500 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-10">
-            OUR IMPACT
-          </span>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12">
+      {/* ── IMPACT NUMBERS ── */}
+      <section className="py-20 bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <span className="inline-block bg-gray-100 text-gray-500 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full">
+              OUR IMPACT
+            </span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10">
             {STATS.map((stat, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 className="text-center px-4 relative"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
+                transition={{ delay: i * 0.07 }}
               >
                 {i !== 0 && (
-                  <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gray-200"></div>
+                  <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-10 bg-gray-200" />
                 )}
-                <div className="text-5xl md:text-6xl font-heading font-black text-[#0A2D7A] mb-2">
+                <div className="text-4xl md:text-5xl font-heading font-bold text-[#0A2D7A] mb-1 tracking-tight">
                   <CountUp end={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-xs uppercase tracking-widest text-gray-500 font-semibold mt-2">
+                <div className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">
                   {stat.label}
                 </div>
               </motion.div>
@@ -169,9 +172,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3: Mission Statement (Dark Stats Section) */}
+      {/* ── WHO WE ARE (split section) ── */}
+      <section className="py-28 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left: image + floating badge */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="rounded-3xl overflow-hidden aspect-[4/3]">
+                <img src={orgTeam3} alt="HTL Team" className="w-full h-full object-cover" />
+              </div>
+              {/* Floating stat badge */}
+              <div className="absolute -bottom-6 -right-4 md:-right-8 bg-[#0A2D7A] text-white rounded-2xl px-7 py-5 shadow-2xl">
+                <div className="text-3xl font-heading font-bold leading-none">Est. 2019</div>
+                <div className="text-blue-300 text-xs uppercase tracking-widest mt-1">West Africa</div>
+              </div>
+              {/* Decorative ring */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full border-4 border-[#C9972D]/30 pointer-events-none" />
+            </motion.div>
+
+            {/* Right: text */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-block bg-gray-100 text-gray-500 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+                WHO WE ARE
+              </span>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-[#0A2D7A] leading-[1.1] mb-6">
+                Liberia's Leading Digital Health Nonprofit
+              </h2>
+              <p className="text-gray-500 text-lg leading-relaxed mb-8">
+                Since 2019, Health Tech Liberia has been at the forefront of healthcare innovation — combining technology, research, and community engagement to build a healthier, more equitable Liberia.
+              </p>
+              <ul className="space-y-3 mb-10">
+                {WHO_WE_ARE_POINTS.map((point, i) => (
+                  <li key={i} className="flex items-start gap-3 text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-[#0A3FAF] mt-0.5 shrink-0" strokeWidth={2} />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 bg-[#0A2D7A] text-white px-7 py-3.5 rounded-full font-semibold hover:bg-[#0A3FAF] transition-colors"
+              >
+                About HTL <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── MISSION / DARK STATEMENT ── */}
       <section className="bg-[#080C14] text-white py-28 relative overflow-hidden">
-        <div className="absolute top-0 left-8 text-[160px] font-serif leading-none bg-gradient-to-b from-[#0A3FAF] to-[#7C3AED] bg-clip-text text-transparent select-none mb-6">"</div>
+        <div className="absolute top-0 left-6 text-[180px] font-serif leading-none bg-gradient-to-b from-[#0A3FAF] to-[#7C3AED] bg-clip-text text-transparent select-none pointer-events-none">"</div>
         <div className="container mx-auto px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -179,28 +239,31 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-6xl font-heading font-black text-white mb-8 leading-tight">
-                Revolutionizing healthcare delivery in Liberia by leveraging technology, research, and innovation.
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-8 leading-[1.1]">
+                Revolutionizing healthcare delivery in Liberia through technology, research, and innovation.
               </h2>
-              <div className="border-t border-white/20 pt-8 mt-8 flex items-center gap-4">
-                <div className="flex text-[#C9972D]">★★★★★</div>
-                <span className="text-white font-bold">Health Tech Liberia, est. 2019</span>
+              <div className="border-t border-white/15 pt-7 flex items-center gap-4">
+                <div className="flex gap-0.5 text-[#C9972D] text-lg">★★★★★</div>
+                <span className="text-white/70 font-medium">Health Tech Liberia · est. 2019</span>
               </div>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
             >
-              <div className="bg-[#0A2D7A] rounded-2xl p-10 text-white relative overflow-hidden">
-                <div className="absolute inset-0 opacity-20" style={{backgroundImage: 'radial-gradient(circle at 30% 50%, #0A3FAF 0%, transparent 60%), radial-gradient(circle at 80% 20%, #7C3AED 0%, transparent 40%)'}} />
-                <div className="relative z-10">
-                  <div className="text-6xl md:text-7xl font-heading font-black mb-2">300+</div>
-                  <div className="text-blue-200 font-semibold text-sm uppercase tracking-widest mb-6">Girls Empowered</div>
-                  <div className="border-t border-white/20 my-6" />
-                  <div className="text-6xl md:text-7xl font-heading font-black mb-2">150+</div>
-                  <div className="text-blue-200 font-semibold text-sm uppercase tracking-widest">Health Workers Trained</div>
+              <div className="bg-[#0A2D7A] rounded-2xl p-10 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-25" style={{backgroundImage: 'radial-gradient(circle at 25% 50%, #0A3FAF 0%, transparent 55%), radial-gradient(circle at 80% 20%, #7C3AED 0%, transparent 40%)'}} />
+                <div className="relative z-10 space-y-8">
+                  <div>
+                    <div className="text-6xl md:text-7xl font-heading font-bold mb-1 tracking-tight">300+</div>
+                    <div className="text-blue-300 text-xs font-semibold uppercase tracking-widest">Girls Empowered</div>
+                  </div>
+                  <div className="border-t border-white/20" />
+                  <div>
+                    <div className="text-6xl md:text-7xl font-heading font-bold mb-1 tracking-tight">150+</div>
+                    <div className="text-blue-300 text-xs font-semibold uppercase tracking-widest">Health Workers Trained</div>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -208,82 +271,96 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 4: Programs */}
+      {/* ── PROGRAMS ── */}
       <section className="py-28 bg-[#F4F7FF]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
-            <span className="inline-block bg-white text-gray-500 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 border border-blue-100">
+            <span className="inline-block bg-white border border-blue-100 text-gray-500 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-5">
               WHAT WE DO
             </span>
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-[#0A2D7A] mb-6">
+            <h3 className="text-4xl md:text-5xl font-heading font-bold text-[#0A2D7A]">
               9 Core Areas of Focus
             </h3>
+            <p className="text-gray-500 mt-4 max-w-xl mx-auto">
+              Comprehensive, interconnected interventions designed to address the full determinants of health in Liberia.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {PROGRAMS.map((program, i) => {
               const Icon = program.icon;
               return (
-                <motion.div 
+                <motion.div
                   key={program.slug}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  className="bg-white rounded-2xl border border-blue-100 p-8 flex flex-col gap-6 hover:shadow-xl hover:border-[#0A3FAF]/30 transition-all group h-full"
+                  transition={{ delay: i * 0.055 }}
+                  className="bg-white rounded-2xl border border-blue-100 p-7 flex flex-col gap-5 hover:shadow-lg hover:border-[#0A3FAF]/25 transition-all group h-full"
                 >
-                  <div className="w-16 h-16 rounded-xl border-2 border-[#0A3FAF]/20 flex items-center justify-center text-[#0A3FAF]">
-                    <Icon className="w-8 h-8" strokeWidth={1.5} />
+                  <div className="w-14 h-14 rounded-xl border border-[#0A3FAF]/20 flex items-center justify-center text-[#0A3FAF] bg-[#F4F7FF] group-hover:bg-[#0A3FAF] group-hover:text-white transition-colors">
+                    <Icon className="w-7 h-7" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-xl font-heading font-bold text-gray-900">{program.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed flex-grow">{program.desc}</p>
-                  <div className="flex items-center gap-3 mt-auto">
-                    <Link href={`/programs/${program.slug}`} className="w-12 h-12 rounded-full bg-[#0A3FAF] flex items-center justify-center text-white hover:bg-[#0A2D7A] transition-colors shrink-0">
-                      <ArrowRight className="w-5 h-5" />
+                  <div className="flex-grow">
+                    <h3 className="text-lg font-heading font-semibold text-gray-900 mb-2">{program.title}</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">{program.desc}</p>
+                  </div>
+                  <div className="flex items-center gap-3 pt-1">
+                    <Link href={`/programs/${program.slug}`} className="w-10 h-10 rounded-full bg-[#0A3FAF] flex items-center justify-center text-white hover:bg-[#0A2D7A] transition-colors shrink-0">
+                      <ArrowRight className="w-4 h-4" />
                     </Link>
-                    <span className="border border-gray-200 text-gray-500 text-xs px-3 py-1 rounded-full whitespace-nowrap overflow-hidden text-ellipsis">{program.slug}</span>
+                    <span className="border border-gray-200 text-gray-400 text-[11px] px-3 py-1 rounded-full font-medium">{program.slug}</span>
                   </div>
                 </motion.div>
               );
             })}
           </div>
+
+          <div className="text-center mt-12">
+            <Link href="/programs" className="inline-flex items-center gap-2 border border-[#0A3FAF] text-[#0A3FAF] px-7 py-3 rounded-full font-semibold hover:bg-[#0A3FAF] hover:text-white transition-all">
+              View All Programs <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 5: Featured Projects */}
+      {/* ── FEATURED PROJECTS ── */}
       <section className="py-28 bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <div>
-              <span className="inline-block bg-gray-100 text-gray-500 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+              <span className="inline-block bg-gray-100 text-gray-500 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-5">
                 IMPACT IN ACTION
               </span>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-[#0A2D7A]">Featured Projects</h3>
+              <h3 className="text-4xl md:text-5xl font-heading font-bold text-[#0A2D7A]">Featured Projects</h3>
             </div>
-            <Link href="/projects" className="text-[#0A3FAF] font-bold hover:underline hover:text-[#0A2D7A] transition-colors flex items-center">
-              View All Projects <ArrowRight className="w-4 h-4 ml-1" />
+            <Link href="/projects" className="text-[#0A3FAF] font-semibold hover:text-[#0A2D7A] transition-colors flex items-center gap-1 text-sm">
+              View All <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {PROJECTS.map((p, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all group flex flex-col h-full"
+                transition={{ delay: i * 0.07 }}
+                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-all group flex flex-col h-full"
               >
                 <div className="aspect-video overflow-hidden">
                   <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 <div className="p-6 flex flex-col gap-3 flex-grow">
-                  <span className="border border-gray-200 text-gray-500 text-xs px-3 py-1 rounded-full self-start">{p.badge}</span>
-                  <p className="text-gray-400 text-xs font-bold uppercase tracking-widest flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {p.loc}</p>
-                  <h3 className="text-xl font-heading font-bold text-gray-900 leading-tight group-hover:text-[#0A3FAF] transition-colors flex-grow">{p.title}</h3>
-                  <Link href="/projects" className="text-xs font-bold uppercase tracking-widest text-gray-800 flex items-center gap-1 hover:text-[#0A3FAF] transition-colors mt-2">
-                    READ MORE <span className="text-lg leading-none">↗</span>
+                  <span className="border border-gray-200 text-gray-500 text-[11px] px-3 py-1 rounded-full self-start font-medium">{p.badge}</span>
+                  <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest flex items-center gap-1.5">
+                    <MapPin className="w-3 h-3" /> {p.loc}
+                  </p>
+                  <h3 className="text-lg font-heading font-semibold text-gray-900 leading-snug group-hover:text-[#0A3FAF] transition-colors flex-grow">{p.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{p.desc}</p>
+                  <Link href="/projects" className="text-[11px] font-bold uppercase tracking-widest text-gray-700 flex items-center gap-1 hover:text-[#0A3FAF] transition-colors mt-1">
+                    READ MORE <span className="text-base leading-none">↗</span>
                   </Link>
                 </div>
               </motion.div>
@@ -292,36 +369,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 6: Testimonials */}
+      {/* ── TESTIMONIALS ── */}
       <section className="bg-[#080C14] text-white py-28 relative overflow-hidden">
-        <div className="absolute top-0 left-8 text-[160px] font-serif leading-none bg-gradient-to-b from-[#0A3FAF] to-[#7C3AED] bg-clip-text text-transparent select-none mb-6">"</div>
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-          <span className="inline-block bg-white/10 text-white/60 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-10">
-            VOICES OF IMPACT
-          </span>
-          <h2 className="text-4xl md:text-5xl font-heading font-black mb-16">Stories from the Community</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        <div className="absolute top-0 left-6 text-[180px] font-serif leading-none bg-gradient-to-b from-[#0A3FAF] to-[#7C3AED] bg-clip-text text-transparent select-none pointer-events-none">"</div>
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-white/10 text-white/60 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-5">
+              VOICES OF IMPACT
+            </span>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold">Stories from the Community</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {TESTIMONIALS.map((t, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className="bg-white rounded-2xl overflow-hidden shadow-2xl h-full flex flex-col"
               >
                 <div className="p-8 relative flex-grow">
-                  <span className="absolute bottom-4 right-6 text-8xl text-gray-100 font-serif select-none leading-none">"</span>
-                  <p className="text-gray-700 text-lg leading-relaxed relative z-10">"{t.quote}"</p>
+                  <span className="absolute bottom-3 right-5 text-7xl text-gray-100 font-serif select-none leading-none">"</span>
+                  <p className="text-gray-600 text-base leading-relaxed relative z-10">"{t.quote}"</p>
                 </div>
-                <div className="bg-gradient-to-r from-[#0A3FAF] to-[#7C3AED] px-8 py-5 flex items-center gap-4 mt-auto">
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-lg shrink-0">
+                <div className={`bg-gradient-to-r ${t.color} px-7 py-5 flex items-center gap-4`}>
+                  <div className="w-11 h-11 rounded-full bg-white/25 flex items-center justify-center text-white font-bold text-base shrink-0 border border-white/30">
                     {t.initial}
                   </div>
                   <div>
-                    <div className="text-white font-bold text-base">{t.name}</div>
-                    <div className="text-white/70 text-xs uppercase tracking-widest">{t.role}</div>
+                    <div className="text-white font-semibold text-sm">{t.name}</div>
+                    <div className="text-white/65 text-xs uppercase tracking-widest">{t.role}</div>
                   </div>
                 </div>
               </motion.div>
@@ -330,38 +409,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 7: Latest News */}
+      {/* ── LATEST NEWS ── */}
       <section className="py-28 bg-[#F4F7FF]">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <div>
-              <span className="inline-block bg-white text-gray-500 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 border border-blue-100">
+              <span className="inline-block bg-white border border-blue-100 text-gray-500 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-5">
                 STAY INFORMED
               </span>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-[#0A2D7A]">Latest from HTL</h3>
+              <h3 className="text-4xl md:text-5xl font-heading font-bold text-[#0A2D7A]">Latest from HTL</h3>
             </div>
-            <Link href="/news" className="text-[#0A3FAF] font-bold hover:underline hover:text-[#0A2D7A] transition-colors flex items-center">
-              View All News <ArrowRight className="w-4 h-4 ml-1" />
+            <Link href="/news" className="text-[#0A3FAF] font-semibold hover:text-[#0A2D7A] transition-colors flex items-center gap-1 text-sm">
+              View All <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {NEWS.map((n, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all group flex flex-col h-full"
+                transition={{ delay: i * 0.07 }}
+                className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition-all group flex flex-col h-full"
               >
-                <div className="p-6 flex flex-col gap-3 flex-grow">
-                  <span className="border border-gray-200 text-gray-500 text-xs px-3 py-1 rounded-full self-start">{n.cat}</span>
-                  <p className="text-gray-400 text-xs font-bold uppercase tracking-widest flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> {n.date}</p>
-                  <h3 className="text-xl font-heading font-bold text-gray-900 leading-tight group-hover:text-[#0A3FAF] transition-colors">{n.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed flex-grow">{n.excerpt}</p>
-                  <Link href="/news" className="text-xs font-bold uppercase tracking-widest text-gray-800 flex items-center gap-1 hover:text-[#0A3FAF] transition-colors mt-2">
-                    READ MORE <span className="text-lg leading-none">↗</span>
+                {/* Top accent stripe */}
+                <div className="h-1 w-full bg-gradient-to-r from-[#0A3FAF] to-[#7C3AED]" />
+                <div className="p-7 flex flex-col gap-3 flex-grow">
+                  <span className="border border-gray-200 text-gray-400 text-[11px] px-3 py-1 rounded-full self-start font-medium">{n.cat}</span>
+                  <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest flex items-center gap-1.5">
+                    <Calendar className="w-3 h-3" /> {n.date}
+                  </p>
+                  <h3 className="text-lg font-heading font-semibold text-gray-900 leading-snug group-hover:text-[#0A3FAF] transition-colors">{n.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed flex-grow">{n.excerpt}</p>
+                  <Link href="/news" className="text-[11px] font-bold uppercase tracking-widest text-gray-700 flex items-center gap-1 hover:text-[#0A3FAF] transition-colors mt-2">
+                    READ MORE <span className="text-base leading-none">↗</span>
                   </Link>
                 </div>
               </motion.div>
@@ -370,41 +453,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 8: Newsletter */}
-      <section className="py-24 bg-white text-center">
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto border border-gray-100 rounded-3xl p-10 md:p-16 shadow-sm bg-[#F4F7FF]"
-          >
-            <span className="inline-block bg-white text-gray-500 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 border border-blue-100">
+      {/* ── NEWSLETTER CTA ── */}
+      <section className="py-0 bg-[#0A2D7A]">
+        <div className="container mx-auto px-4 md:px-6 py-24">
+          <div className="max-w-2xl mx-auto text-center">
+            <span className="inline-block bg-white/10 text-white/70 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
               STAY CONNECTED
             </span>
-            <h3 className="text-3xl md:text-4xl font-heading font-black text-[#0A2D7A] mb-4">Join Our Newsletter</h3>
-            <p className="text-gray-500 text-base mb-8">Get updates on our programs, research, and impact delivered to your inbox.</p>
-            
-            <form className="flex flex-col sm:flex-row gap-3 mb-6" onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                className="flex-grow rounded-xl border border-gray-200 px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#0A3FAF] text-gray-700 bg-white"
+            <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Join Our Newsletter</h3>
+            <p className="text-blue-200 mb-10">Get updates on our programs, research, and impact delivered directly to your inbox.</p>
+
+            <form className="flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-grow rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-white/40 text-white placeholder:text-white/40 backdrop-blur-sm"
                 required
               />
-              <button 
-                type="submit" 
-                className="bg-[#0A3FAF] text-white px-8 py-3.5 rounded-xl font-bold hover:bg-[#0A2D7A] transition-colors whitespace-nowrap hover:-translate-y-0.5"
+              <button
+                type="submit"
+                className="bg-[#C9972D] text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-[#b5862a] transition-colors whitespace-nowrap"
               >
                 Subscribe
               </button>
             </form>
-            <div className="text-xs text-gray-400 font-medium">
-              Join 1,200+ supporters · No spam · Unsubscribe anytime
-            </div>
-          </motion.div>
+            <p className="text-white/40 text-xs mt-5">Join 1,200+ supporters · No spam · Unsubscribe anytime</p>
+          </div>
         </div>
       </section>
+
     </div>
   );
 }

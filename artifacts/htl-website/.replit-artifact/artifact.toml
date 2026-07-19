@@ -21,7 +21,3 @@ publicDir = "artifacts/htl-website/dist/public"
 [[services.production.rewrites]]
 from = "/*"
 to = "/index.html"
-
-[services.env]
-PORT = "22021"
-BASE_PATH = "/"

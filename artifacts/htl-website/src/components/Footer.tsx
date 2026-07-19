@@ -108,7 +108,7 @@ function AccordionRow({
   const id = title.toLowerCase().replace(/\s+/g, "-");
 
   return (
-    <div className="border-b border-white/15">
+    <div className="border-b-2 border-white">
       <button
         aria-expanded={open}
         aria-controls={`footer-panel-${id}`}
@@ -194,7 +194,7 @@ export default function Footer() {
       </div>
 
       {/* ── Separator ── */}
-      <div className="border-t border-white/15" />
+      <div className="border-t-2 border-white" />
 
       {/* ── Contact info (always visible) ── */}
       <div className="px-6 py-8 flex flex-col gap-4">
@@ -230,7 +230,7 @@ export default function Footer() {
       </div>
 
       {/* ── Separator ── */}
-      <div className="border-t border-white/15" />
+      <div className="border-t-2 border-white" />
 
       {/* ── Accordion nav sections ── */}
       <div>
@@ -240,7 +240,7 @@ export default function Footer() {
       </div>
 
       {/* ── Trust bar ── */}
-      <div className="border-t border-white/15 px-6 py-7">
+      <div className="border-t-2 border-white px-6 py-7">
         <div className="flex flex-col gap-3 mb-5">
           <div className="flex items-center gap-2.5">
             <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true" />
@@ -276,7 +276,7 @@ export default function Footer() {
       </div>
 
       {/* ── Copyright bar ── */}
-      <div className="border-t border-white/15 px-6 py-7 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="border-t-2 border-white px-6 py-7 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-gray-500 text-xs text-center md:text-left leading-relaxed">
           &copy; {new Date().getFullYear()} Health Tech Liberia. All rights reserved.
         </p>

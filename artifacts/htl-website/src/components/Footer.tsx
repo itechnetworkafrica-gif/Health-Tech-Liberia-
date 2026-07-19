@@ -45,65 +45,103 @@ function IconYouTube() {
   );
 }
 
-// ── Data ──────────────────────────────────────────────────────────────────────
+// ── Shared data ───────────────────────────────────────────────────────────────
 
 const SOCIAL = [
-  { label: "LinkedIn",    href: "https://www.linkedin.com/showcase/health-tech-liberia-htl/",    Icon: IconLinkedin },
-  { label: "Facebook",    href: "https://www.facebook.com/profile.php?id=100087475826014",   Icon: IconFacebook },
-  { label: "Instagram",   href: "https://instagram.com/healthtechliberia/",                  Icon: IconInstagram },
-  { label: "X (Twitter)", href: "https://x.com/healthtechliberia/",                          Icon: IconX },
-  { label: "YouTube",     href: "https://youtube.com/@health-techlib?si=JFjpHVa895wiNNsX",  Icon: IconYouTube },
+  { label: "LinkedIn",    href: "https://www.linkedin.com/showcase/health-tech-liberia-htl/",   Icon: IconLinkedin },
+  { label: "Facebook",    href: "https://www.facebook.com/profile.php?id=100087475826014",      Icon: IconFacebook },
+  { label: "Instagram",   href: "https://instagram.com/healthtechliberia/",                     Icon: IconInstagram },
+  { label: "X (Twitter)", href: "https://x.com/healthtechliberia/",                             Icon: IconX },
+  { label: "YouTube",     href: "https://youtube.com/@health-techlib?si=JFjpHVa895wiNNsX",     Icon: IconYouTube },
+];
+
+const ABOUT_LINKS = [
+  { label: "Who We Are",   path: "/about" },
+  { label: "Our Mission",  path: "/about#mission" },
+  { label: "Our Team",     path: "/about#team" },
+  { label: "Get Involved", path: "/get-involved" },
+  { label: "Partners",     path: "/partners" },
+];
+
+const PROGRAM_LINKS = [
+  { label: "Digital Health & Innovation",    path: "/programs/digital-health" },
+  { label: "STEM Education & Research",      path: "/programs/stem-education" },
+  { label: "Gender Equality",                path: "/programs/gender-equality" },
+  { label: "Mental Health",                  path: "/programs/mental-health" },
+  { label: "Climate & Environmental Health", path: "/programs/climate-health" },
+  { label: "Health Financing",               path: "/programs/health-financing" },
+  { label: "Sexual & Reproductive Health",   path: "/programs/sexual-reproductive-health" },
+  { label: "Peace & Community Engagement",   path: "/programs/peace-community" },
+  { label: "Advocacy",                       path: "/programs/advocacy" },
+];
+
+const QUICK_LINKS = [
+  { label: "Home",               path: "/" },
+  { label: "Projects",           path: "/projects" },
+  { label: "Research",           path: "/research" },
+  { label: "News & Media",       path: "/news" },
+  { label: "Events",             path: "/events" },
+  { label: "Resources",          path: "/resources" },
+  { label: "Certificate Portal", path: "/certificates" },
+  { label: "Donate",             path: "/donate" },
 ];
 
 const ACCORDIONS = [
-  {
-    title: "About Us",
-    links: [
-      { label: "Who We Are",   path: "/about" },
-      { label: "Our Mission",  path: "/about#mission" },
-      { label: "Our Team",     path: "/about#team" },
-      { label: "Get Involved", path: "/get-involved" },
-      { label: "Partners",     path: "/partners" },
-    ],
-  },
-  {
-    title: "Our Programs",
-    links: [
-      { label: "Digital Health & Innovation",       path: "/programs/digital-health" },
-      { label: "STEM Education & Research",         path: "/programs/stem-education" },
-      { label: "Gender Equality",                   path: "/programs/gender-equality" },
-      { label: "Mental Health",                     path: "/programs/mental-health" },
-      { label: "Climate & Environmental Health",    path: "/programs/climate-health" },
-      { label: "Health Financing",                  path: "/programs/health-financing" },
-      { label: "Sexual & Reproductive Health",      path: "/programs/sexual-reproductive-health" },
-      { label: "Peace & Community Engagement",      path: "/programs/peace-community" },
-      { label: "Advocacy",                          path: "/programs/advocacy" },
-    ],
-  },
-  {
-    title: "Quick Links",
-    links: [
-      { label: "Home",               path: "/" },
-      { label: "Projects",           path: "/projects" },
-      { label: "Research",           path: "/research" },
-      { label: "News & Media",       path: "/news" },
-      { label: "Events",             path: "/events" },
-      { label: "Resources",          path: "/resources" },
-      { label: "Certificate Portal", path: "/certificates" },
-      { label: "Donate",             path: "/donate" },
-    ],
-  },
+  { title: "About Us",      links: ABOUT_LINKS },
+  { title: "Our Programs",  links: PROGRAM_LINKS },
+  { title: "Quick Links",   links: QUICK_LINKS },
 ];
 
-// ── Accordion row with smooth animation ──────────────────────────────────────
+// ── Reusable social icons row ─────────────────────────────────────────────────
 
-function AccordionRow({
-  title,
-  links,
-}: {
-  title: string;
-  links: { label: string; path: string }[];
-}) {
+function SocialIcons() {
+  return (
+    <div className="flex items-center gap-3" role="list" aria-label="Social media links">
+      {SOCIAL.map(({ label, href, Icon }) => (
+        <motion.a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Follow us on ${label}`}
+          role="listitem"
+          whileHover={{ scale: 1.12, y: -2 }}
+          whileTap={{ scale: 0.92 }}
+          transition={{ type: "spring", stiffness: 380, damping: 18 }}
+          className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+        >
+          <Icon />
+        </motion.a>
+      ))}
+    </div>
+  );
+}
+
+// ── Desktop nav column ────────────────────────────────────────────────────────
+
+function NavColumn({ title, links }: { title: string; links: { label: string; path: string }[] }) {
+  return (
+    <div className="flex flex-col gap-5">
+      <h3 className="text-white font-bold text-lg tracking-wide">{title}</h3>
+      <ul className="flex flex-col gap-3.5">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.path}
+              className="text-gray-400 hover:text-white text-sm transition-colors duration-200 focus:outline-none focus-visible:underline focus-visible:text-white"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// ── Mobile accordion row ──────────────────────────────────────────────────────
+
+function AccordionRow({ title, links }: { title: string; links: { label: string; path: string }[] }) {
   const [open, setOpen] = useState(false);
   const id = title.toLowerCase().replace(/\s+/g, "-");
 
@@ -115,9 +153,7 @@ function AccordionRow({
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center justify-between py-5 px-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-sm"
       >
-        <span className="text-white font-bold text-xl tracking-wide">
-          {title}
-        </span>
+        <span className="text-white font-bold text-xl tracking-wide">{title}</span>
         <motion.span
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.25, ease: "easeInOut" }}
@@ -164,119 +200,160 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white" role="contentinfo">
 
-      {/* ── Top: tagline + social ── */}
-      <div className="px-6 pt-16 pb-12">
-        <p className="text-white font-bold text-2xl leading-snug max-w-xs mb-12">
-          Transforming Health Through Technology, Research, and Advocacy in Liberia.
-        </p>
+      {/* ── TOP: tagline + follow us ── */}
+      <div className="px-6 md:px-12 pt-16 pb-12">
+        {/* Mobile: stacked */}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+          <p className="text-white font-bold text-2xl md:text-3xl leading-snug max-w-sm">
+            Transforming Health Through Technology, Research, and Advocacy in Liberia.
+          </p>
+          <div className="flex flex-col gap-4">
+            <p className="text-white text-xs font-semibold tracking-[0.15em] uppercase">
+              Follow us
+            </p>
+            <SocialIcons />
+          </div>
+        </div>
+      </div>
 
-        <p className="text-white text-xs font-semibold tracking-[0.15em] uppercase mb-5">
-          Follow us
-        </p>
-        <div className="flex items-center gap-3" role="list" aria-label="Social media links">
-          {SOCIAL.map(({ label, href, Icon }) => (
-            <motion.a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Follow us on ${label}`}
-              role="listitem"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.92 }}
-              transition={{ type: "spring", stiffness: 380, damping: 18 }}
-              className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              <Icon />
-            </motion.a>
+      {/* ── SEPARATOR ── */}
+      <div className="border-t-2 border-white" />
+
+      {/* ════════════════════════════════════════════
+          DESKTOP NAV — 4-column grid, hidden on mobile
+          ════════════════════════════════════════════ */}
+      <div className="hidden md:grid md:grid-cols-4 gap-10 px-12 py-14">
+        <NavColumn title="About Us"     links={ABOUT_LINKS} />
+        <NavColumn title="Our Programs" links={PROGRAM_LINKS} />
+        <NavColumn title="Quick Links"  links={QUICK_LINKS} />
+
+        {/* Contact column */}
+        <div className="flex flex-col gap-5">
+          <h3 className="text-white font-bold text-lg tracking-wide">Contact Us</h3>
+          <ul className="flex flex-col gap-4">
+            <li>
+              <a
+                href="mailto:healthtechliberia@gmail.com"
+                className="flex items-start gap-3 text-gray-400 hover:text-white text-sm transition-colors duration-200"
+                aria-label="Email Health Tech Liberia"
+              >
+                <Mail className="w-4 h-4 text-[#C9972D] shrink-0 mt-0.5" aria-hidden="true" />
+                healthtechliberia@gmail.com
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+231776836689"
+                className="flex items-center gap-3 text-gray-400 hover:text-white text-sm transition-colors duration-200"
+                aria-label="Call Health Tech Liberia"
+              >
+                <Phone className="w-4 h-4 text-[#C9972D] shrink-0" aria-hidden="true" />
+                +231 776 836 689
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://maps.google.com/?q=Monrovia,+Liberia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-gray-400 hover:text-white text-sm transition-colors duration-200"
+                aria-label="View location on Google Maps"
+              >
+                <MapPin className="w-4 h-4 text-[#C9972D] shrink-0" aria-hidden="true" />
+                Monrovia, Liberia
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* ════════════════════════════════════════════
+          MOBILE NAV — contact block + accordions, hidden on desktop
+          ════════════════════════════════════════════ */}
+      <div className="md:hidden">
+        {/* Contact always visible on mobile */}
+        <div className="px-6 py-8 flex flex-col gap-4">
+          <p className="text-white text-xs font-semibold tracking-[0.15em] uppercase mb-1">
+            Contact Us
+          </p>
+          <a
+            href="mailto:healthtechliberia@gmail.com"
+            className="flex items-center gap-3 text-gray-300 hover:text-white text-sm transition-colors duration-200"
+            aria-label="Email Health Tech Liberia"
+          >
+            <Mail className="w-4 h-4 text-[#C9972D] shrink-0" aria-hidden="true" />
+            healthtechliberia@gmail.com
+          </a>
+          <a
+            href="tel:+231776836689"
+            className="flex items-center gap-3 text-gray-300 hover:text-white text-sm transition-colors duration-200"
+            aria-label="Call Health Tech Liberia"
+          >
+            <Phone className="w-4 h-4 text-[#C9972D] shrink-0" aria-hidden="true" />
+            +231 776 836 689
+          </a>
+          <a
+            href="https://maps.google.com/?q=Monrovia,+Liberia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 text-gray-300 hover:text-white text-sm transition-colors duration-200"
+            aria-label="View location on Google Maps"
+          >
+            <MapPin className="w-4 h-4 text-[#C9972D] shrink-0" aria-hidden="true" />
+            Monrovia, Liberia
+          </a>
+        </div>
+
+        <div className="border-t-2 border-white" />
+
+        {/* Accordions */}
+        <div>
+          {ACCORDIONS.map((section) => (
+            <AccordionRow key={section.title} title={section.title} links={section.links} />
           ))}
         </div>
       </div>
 
-      {/* ── Separator ── */}
-      <div className="border-t-2 border-white" />
-
-      {/* ── Contact info (always visible) ── */}
-      <div className="px-6 py-8 flex flex-col gap-4">
-        <p className="text-white text-xs font-semibold tracking-[0.15em] uppercase mb-1">
-          Contact Us
-        </p>
-        <a
-          href="mailto:healthtechliberia@gmail.com"
-          className="flex items-center gap-3 text-gray-300 hover:text-white text-sm transition-colors duration-200 focus:outline-none focus-visible:underline"
-          aria-label="Email Health Tech Liberia"
-        >
-          <Mail className="w-4 h-4 text-[#C9972D] shrink-0" aria-hidden="true" />
-          healthtechliberia@gmail.com
-        </a>
-        <a
-          href="tel:+231776836689"
-          className="flex items-center gap-3 text-gray-300 hover:text-white text-sm transition-colors duration-200 focus:outline-none focus-visible:underline"
-          aria-label="Call Health Tech Liberia"
-        >
-          <Phone className="w-4 h-4 text-[#C9972D] shrink-0" aria-hidden="true" />
-          +231 776 836 689
-        </a>
-        <a
-          href="https://maps.google.com/?q=Monrovia,+Liberia"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-3 text-gray-300 hover:text-white text-sm transition-colors duration-200 focus:outline-none focus-visible:underline"
-          aria-label="View location on Google Maps"
-        >
-          <MapPin className="w-4 h-4 text-[#C9972D] shrink-0" aria-hidden="true" />
-          Monrovia, Liberia
-        </a>
-      </div>
-
-      {/* ── Separator ── */}
-      <div className="border-t-2 border-white" />
-
-      {/* ── Accordion nav sections ── */}
-      <div>
-        {ACCORDIONS.map((section) => (
-          <AccordionRow key={section.title} title={section.title} links={section.links} />
-        ))}
-      </div>
-
-      {/* ── Trust bar ── */}
-      <div className="border-t-2 border-white px-6 py-7">
-        <div className="flex flex-col gap-3 mb-5">
-          <div className="flex items-center gap-2.5">
-            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true" />
-            <span className="text-gray-400 text-xs">
-              Registered Non-Governmental Organization · Republic of Liberia
-            </span>
+      {/* ── TRUST BAR ── */}
+      <div className="border-t-2 border-white px-6 md:px-12 py-7">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+            <div className="flex items-center gap-2.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true" />
+              <span className="text-gray-400 text-xs">
+                Registered NGO · Republic of Liberia
+              </span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <Lock className="w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true" />
+              <span className="text-gray-400 text-xs">SSL Secured · Your data is protected</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2.5">
-            <Lock className="w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true" />
-            <span className="text-gray-400 text-xs">SSL Secured · Your data is protected</span>
-          </div>
+
+          <nav aria-label="Legal links">
+            <ul className="flex flex-wrap gap-x-5 gap-y-2" role="list">
+              {[
+                { label: "Privacy Policy",       path: "/privacy" },
+                { label: "Terms of Service",      path: "/terms" },
+                { label: "Cookie Policy",         path: "/privacy#cookies" },
+                { label: "Donation Transparency", path: "/donate#transparency" },
+              ].map(({ label, path }) => (
+                <li key={label}>
+                  <Link
+                    href={path}
+                    className="text-gray-500 hover:text-white text-xs transition-colors duration-200 focus:outline-none focus-visible:underline focus-visible:text-white"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
-
-        <nav aria-label="Legal links">
-          <ul className="flex flex-wrap gap-x-5 gap-y-2" role="list">
-            {[
-              { label: "Privacy Policy",        path: "/privacy" },
-              { label: "Terms of Service",       path: "/terms" },
-              { label: "Cookie Policy",          path: "/privacy#cookies" },
-              { label: "Donation Transparency",  path: "/donate#transparency" },
-            ].map(({ label, path }) => (
-              <li key={label}>
-                <Link
-                  href={path}
-                  className="text-gray-500 hover:text-white text-xs transition-colors duration-200 focus:outline-none focus-visible:underline focus-visible:text-white"
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
       </div>
 
-      {/* ── Copyright bar ── */}
-      <div className="border-t-2 border-white px-6 py-7 flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* ── COPYRIGHT BAR ── */}
+      <div className="border-t-2 border-white px-6 md:px-12 py-7 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-gray-500 text-xs text-center md:text-left leading-relaxed">
           &copy; {new Date().getFullYear()} Health Tech Liberia. All rights reserved.
         </p>

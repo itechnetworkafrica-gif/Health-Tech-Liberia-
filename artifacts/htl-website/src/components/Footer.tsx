@@ -100,7 +100,7 @@ const LEGAL_LINKS = [
 
 // ── Full-width divider ─────────────────────────────────────────────────────────
 function Divider() {
-  return <div className="w-full h-px bg-white" role="separator" />;
+  return <div className="w-full h-px bg-white/10" role="separator" />;
 }
 
 // ── Accordion row ─────────────────────────────────────────────────────────────
@@ -167,7 +167,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black text-white" role="contentinfo" aria-label="Site footer">
+    <footer className="bg-[#060E22] text-white" role="contentinfo" aria-label="Site footer">
 
       {/* ── 1. Tagline + social ─────────────────────────────────────────────── */}
       <div className="px-6 pt-16 pb-12 max-w-xl">
@@ -186,11 +186,11 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center
+                className="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center
                            text-white transition-all duration-200 ease-out
-                           hover:bg-white hover:text-black hover:scale-105 hover:shadow-[0_0_0_3px_rgba(255,255,255,0.25)]
+                           hover:bg-white hover:text-black hover:border-white hover:scale-105 hover:shadow-[0_0_0_3px_rgba(255,255,255,0.15)]
                            active:scale-95
-                           focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                           focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#060E22]"
               >
                 <Icon />
               </a>
@@ -210,7 +210,7 @@ export default function Footer() {
             aria-label={label}
             className="flex items-start gap-4 group focus:outline-none focus-visible:underline"
           >
-            <span className="flex-shrink-0 w-8 h-8 rounded-full border border-white/30 flex items-center justify-center
+            <span className="flex-shrink-0 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center
                              group-hover:border-white transition-colors duration-200">
               <Icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors duration-200" aria-hidden="true" />
             </span>
@@ -233,7 +233,7 @@ export default function Footer() {
       <div className="px-6 py-7 flex flex-col gap-5">
         {/* SSL + Registration */}
         <div className="flex flex-wrap items-center gap-4">
-          <span className="inline-flex items-center gap-1.5 text-[0.7rem] text-gray-500 border border-white/15 rounded px-2.5 py-1.5 leading-none">
+          <span className="inline-flex items-center gap-1.5 text-[0.7rem] text-gray-500 border border-white/10 rounded px-2.5 py-1.5 leading-none">
             <Lock className="w-3 h-3 text-green-500" aria-hidden="true" />
             SSL Secured
           </span>
@@ -270,38 +270,28 @@ export default function Footer() {
           &copy; {year} Health Tech Liberia. All rights reserved.
         </p>
 
-        {/* Built by */}
-        <div className="flex flex-col gap-1.5">
+        {/* Built by — Gotecx under iTech domain */}
+        <div className="flex flex-col gap-2">
           <p className="text-gray-500 text-[0.75rem] uppercase tracking-[0.08em] font-medium">
             Designed &amp; Developed by
           </p>
-          <div className="flex items-center gap-3 flex-wrap">
-            <a
-              href="https://itechnetworkafrica.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit iTech Network Africa website"
-              className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#C9972D]
-                         hover:text-white transition-colors duration-200
-                         focus:outline-none focus-visible:underline focus-visible:text-white"
-            >
-              iTech Network Africa
-              <ExternalLink className="w-3 h-3 opacity-60" aria-hidden="true" />
-            </a>
-            <span className="text-gray-700 text-sm">·</span>
-            <a
-              href="https://gotecx.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Gotecx website"
-              className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#C9972D]
-                         hover:text-white transition-colors duration-200
-                         focus:outline-none focus-visible:underline focus-visible:text-white"
-            >
-              Gotecx
-              <ExternalLink className="w-3 h-3 opacity-60" aria-hidden="true" />
-            </a>
-          </div>
+          <a
+            href="https://itechnetworkafrica.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit iTech Network Africa — Gotecx website"
+            className="inline-flex items-center gap-2 text-[0.9rem] font-bold text-[#C9972D]
+                       hover:text-white transition-colors duration-200 group
+                       focus:outline-none focus-visible:underline focus-visible:text-white w-fit"
+          >
+            <span>iTech Network Africa</span>
+            <span className="text-gray-600 font-normal text-[0.85rem]">|</span>
+            <span>Gotecx</span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+          </a>
+          <p className="text-gray-600 text-[0.7rem]">
+            itechnetworkafrica.com
+          </p>
         </div>
 
       </div>

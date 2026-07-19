@@ -4,11 +4,12 @@ import {
   Menu, X, ChevronDown, Heart,
   Monitor, FlaskConical, Scale, Brain, Leaf,
   Banknote, HeartPulse, Users, Megaphone,
-  Award,
+  Award, Search, Sparkles,
 } from "lucide-react";
 import htlLogo from "@assets/1784331190411_1784331478727.jpg";
 import { motion, AnimatePresence } from "framer-motion";
 import TopBar from "./TopBar";
+import SearchModal from "./SearchModal";
 
 const PROGRAMS = [
   { name: "Digital Health & Innovation", slug: "digital-health", Icon: Monitor },
@@ -27,12 +28,11 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileAccordions, setMobileAccordions] = useState<Record<string, boolean>>({});
+  const [searchOpen, setSearchOpen] = useState(false);
   const [location] = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 80);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -41,6 +41,18 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
   }, [location]);
+
+  // Global Cmd+K / Ctrl+K shortcut
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   const toggleMobileAccordion = (key: string) => {
     setMobileAccordions(prev => ({ ...prev, [key]: !prev[key] }));
@@ -65,6 +77,7 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between">
+
             {/* Logo */}
             <Link href="/" className="flex items-center z-50 group">
               <img
@@ -164,7 +177,23 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
+              {/* AI Search button */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                aria-label="Open site search"
+                className="flex items-center gap-2 px-3.5 py-2 rounded-xl border border-gray-200 bg-gray-50/80
+                           text-gray-500 hover:text-[#0A2D7A] hover:border-[#0A2D7A]/30 hover:bg-blue-50/50
+                           transition-all duration-200 group"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-[#C9972D] group-hover:text-[#C9972D]" />
+                <span className="text-[0.8rem] font-semibold hidden xl:inline">Search</span>
+                <kbd className="hidden xl:flex items-center gap-0.5 bg-white border border-gray-200 rounded text-[0.6rem] font-mono text-gray-400 px-1.5 py-0.5 shadow-sm">
+                  <span className="text-[0.7rem]">⌘</span>K
+                </kbd>
+                <Search className="w-4 h-4 xl:hidden" />
+              </button>
+
+              <div className="flex items-center gap-3 pl-2 border-l border-gray-200">
                 <Link href="/get-involved" className="text-sm font-bold text-primary hover:text-[#0A2D7A] transition-colors uppercase tracking-wider">
                   Get Involved
                 </Link>
@@ -175,7 +204,15 @@ export default function Navbar() {
             </nav>
 
             {/* Mobile Actions */}
-            <div className="flex items-center gap-3 lg:hidden">
+            <div className="flex items-center gap-2 lg:hidden">
+              {/* Mobile search button */}
+              <button
+                onClick={() => setSearchOpen(true)}
+                aria-label="Open search"
+                className="p-2 text-[#0A2D7A] bg-slate-50 rounded-lg"
+              >
+                <Search className="w-5 h-5" />
+              </button>
               <Link href="/donate" className="bg-primary text-white px-4 py-2 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-md">
                 <Heart className="w-3.5 h-3.5" /> Donate
               </Link>
@@ -268,6 +305,21 @@ export default function Navbar() {
 
                 <Link href="/get-involved" className="text-xl font-heading font-bold text-primary p-4 border-b border-primary/20 hover:bg-primary/5 rounded-xl">Get Involved</Link>
 
+                {/* Mobile search shortcut */}
+                <button
+                  onClick={() => { setIsMobileMenuOpen(false); setSearchOpen(true); }}
+                  className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-[#0A2D7A]/5 to-blue-50 border border-blue-100 hover:border-[#0A2D7A]/30 transition-all"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0A2D7A] to-[#0A3FAF] flex items-center justify-center">
+                    <Sparkles className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm font-bold text-[#0A2D7A]">AI Search</p>
+                    <p className="text-xs text-gray-400">Search programs, projects, pages…</p>
+                  </div>
+                  <Search className="w-4 h-4 text-gray-400 ml-auto" />
+                </button>
+
                 <div className="mt-4">
                   <Link href="/donate" className="bg-primary text-white text-center py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-lg">
                     <Heart className="w-5 h-5 fill-white/20" /> Make a Donation
@@ -278,6 +330,9 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </header>
+
+      {/* AI Search Modal */}
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

@@ -115,7 +115,7 @@ function AccordionRow({
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center justify-between py-5 px-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-sm"
       >
-        <span className="text-white font-semibold text-base tracking-wide">
+        <span className="text-white font-bold text-xl tracking-wide">
           {title}
         </span>
         <motion.span

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { ChevronDown } from "lucide-react";
 
-// ── Social icon SVGs ─────────────────────────────────────────────────────────
+// ── Social icon SVGs ──────────────────────────────────────────────────────────
 function IconLinkedin() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -34,46 +34,37 @@ function IconX() {
     </svg>
   );
 }
-function IconYouTube() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-      <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000" />
-    </svg>
-  );
-}
 
 const SOCIAL = [
   { label: "LinkedIn",  href: "https://www.linkedin.com/company/health-tech-liberia", Icon: IconLinkedin },
   { label: "Facebook",  href: "https://www.facebook.com/healthtechliberia",            Icon: IconFacebook },
   { label: "Instagram", href: "https://www.instagram.com/healthtechliberia",           Icon: IconInstagram },
   { label: "X",         href: "https://x.com/htliberia",                               Icon: IconX },
-  { label: "YouTube",   href: "https://www.youtube.com/@healthtechliberia",            Icon: IconYouTube },
 ];
 
 const SECTIONS = [
   {
     title: "About Us",
     links: [
-      { label: "Who We Are",    path: "/about" },
-      { label: "Our Mission",   path: "/about#mission" },
-      { label: "Our Team",      path: "/about#team" },
-      { label: "Get Involved",  path: "/get-involved" },
-      { label: "Partners",      path: "/partners" },
+      { label: "Who We Are",   path: "/about" },
+      { label: "Our Mission",  path: "/about#mission" },
+      { label: "Our Team",     path: "/about#team" },
+      { label: "Get Involved", path: "/get-involved" },
+      { label: "Partners",     path: "/partners" },
     ],
   },
   {
     title: "Our Programs",
     links: [
-      { label: "Digital Health & Innovation",       path: "/programs/digital-health" },
-      { label: "STEM Education & Research",         path: "/programs/stem-education" },
-      { label: "Gender Equality",                   path: "/programs/gender-equality" },
-      { label: "Mental Health",                     path: "/programs/mental-health" },
-      { label: "Climate & Environmental Health",    path: "/programs/climate-health" },
-      { label: "Health Financing",                  path: "/programs/health-financing" },
-      { label: "Sexual & Reproductive Health",      path: "/programs/sexual-reproductive-health" },
-      { label: "Peace & Community Engagement",      path: "/programs/peace-community" },
-      { label: "Advocacy",                          path: "/programs/advocacy" },
+      { label: "Digital Health & Innovation",    path: "/programs/digital-health" },
+      { label: "STEM Education & Research",      path: "/programs/stem-education" },
+      { label: "Gender Equality",                path: "/programs/gender-equality" },
+      { label: "Mental Health",                  path: "/programs/mental-health" },
+      { label: "Climate & Environmental Health", path: "/programs/climate-health" },
+      { label: "Health Financing",               path: "/programs/health-financing" },
+      { label: "Sexual & Reproductive Health",   path: "/programs/sexual-reproductive-health" },
+      { label: "Peace & Community Engagement",   path: "/programs/peace-community" },
+      { label: "Advocacy",                       path: "/programs/advocacy" },
     ],
   },
   {
@@ -104,18 +95,22 @@ function AccordionRow({ title, links }: { title: string; links: { label: string;
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b border-white/20">
+    <div>
+      {/* full-width solid white top line */}
+      <div className="w-full h-px bg-white" />
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 px-6 text-left"
       >
-        <span className="text-white font-semibold text-base tracking-wide">{title}</span>
+        <span className="text-white font-semibold text-base">{title}</span>
         <ChevronDown
           className={`w-5 h-5 text-white shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
         />
       </button>
 
-      {open && (
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${open ? "max-h-96" : "max-h-0"}`}
+      >
         <div className="px-6 pb-5 flex flex-col gap-3">
           {links.map((link) => (
             <Link
@@ -127,7 +122,7 @@ function AccordionRow({ title, links }: { title: string; links: { label: string;
             </Link>
           ))}
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -136,16 +131,16 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white">
 
-      {/* ── Top: tagline + follow us ── */}
+      {/* ── Tagline + social ── */}
       <div className="px-6 pt-14 pb-10">
         <p className="text-white font-bold text-2xl leading-snug max-w-xs mb-10">
           Transforming Health Through Technology, Research, and Advocacy in Liberia.
         </p>
 
-        <p className="text-white text-sm font-semibold tracking-wider uppercase mb-5">
+        <p className="text-white text-sm font-semibold tracking-wider mb-5">
           Follow us
         </p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           {SOCIAL.map(({ label, href, Icon }) => (
             <a
               key={label}
@@ -153,7 +148,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-200"
+              className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-200"
             >
               <Icon />
             </a>
@@ -161,18 +156,17 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Full-width white separator ── */}
-      <div className="border-t border-white/20" />
-
-      {/* ── Accordion sections ── */}
+      {/* ── Accordion sections (each has its own top white line) ── */}
       <div>
         {SECTIONS.map((section) => (
           <AccordionRow key={section.title} title={section.title} links={section.links} />
         ))}
+        {/* closing line after last row */}
+        <div className="w-full h-px bg-white" />
       </div>
 
       {/* ── Bottom bar ── */}
-      <div className="border-t border-white/20 px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
+      <div className="px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
         <p className="text-gray-500 text-xs text-center md:text-left">
           &copy; {new Date().getFullYear()} Health Tech Liberia. All rights reserved.
         </p>

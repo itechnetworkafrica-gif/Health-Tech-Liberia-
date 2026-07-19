@@ -47,7 +47,7 @@ Health Tech Liberia website + planned LMS platform where students can enroll in 
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Custom domain for the live site: **healthtech-liberia.org** (to be configured in Vercel when ready — add it under Project Settings → Domains)
 
 ## Gotchas
 

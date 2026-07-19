@@ -66,20 +66,12 @@ export default function Navbar() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 z-50 group">
+            <Link href="/" className="flex items-center z-50 group">
               <img
                 src={htlLogo}
                 alt="Health Tech Liberia Logo"
                 className="h-12 w-auto rounded-lg shadow-sm bg-white transition-transform group-hover:scale-105"
               />
-              <div className="hidden sm:flex flex-col">
-                <span className="font-heading font-black text-xl leading-tight text-[#0A2D7A] tracking-tight">
-                  HEALTH TECH
-                </span>
-                <span className="font-heading font-bold text-sm leading-none text-primary tracking-widest uppercase">
-                  LIBERIA
-                </span>
-              </div>
             </Link>
 
             {/* Desktop Nav */}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Using the official WhatsApp SVG for accurate branding
 function WhatsAppIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7" aria-hidden="true">
@@ -16,26 +15,30 @@ export default function WhatsAppButton() {
       href="https://wa.me/231776836689"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="Chat with Health Tech Liberia on WhatsApp (opens in new tab)"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1.2, type: "spring", stiffness: 200, damping: 20 }}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.92 }}
-      /* Anchored at bottom-6 right-6 (24px each). The Back-to-Top button sits
-         at bottom-[5.75rem] right-6 — safely above this at all times. */
+      /**
+       * Anchored at bottom-6 right-6 (24px each) — 56×56px button.
+       * ScrollToTop sits at bottom-[5.75rem] (92px) right-6 — always above this.
+       * Both are right-6 on all viewports; no horizontal collision.
+       */
       className="fixed bottom-6 right-6 z-50
                  flex items-center justify-center
                  w-14 h-14 bg-[#25D366] text-white rounded-full
                  shadow-[0_4px_20px_rgba(37,211,102,0.4)]
-                 hover:bg-[#1ebe5d] hover:shadow-[0_6px_24px_rgba(37,211,102,0.5)]
-                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-black
+                 hover:bg-[#1ebe5d] hover:shadow-[0_6px_28px_rgba(37,211,102,0.55)]
+                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]
+                 focus-visible:ring-offset-2 focus-visible:ring-offset-black
                  transition-colors duration-200"
-      aria-label="Chat with us on WhatsApp"
     >
       <WhatsAppIcon />
       {/* Live indicator dot */}
       <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4" aria-hidden="true">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-70" />
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
         <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-black" />
       </span>
     </motion.a>

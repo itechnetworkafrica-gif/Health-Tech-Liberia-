@@ -49,10 +49,10 @@ export default function TopBar() {
             
             <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-end">
               <span className="md:hidden font-medium opacity-80 mr-auto">Health Tech Liberia</span>
-              <a href="#" className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=100087475826014" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook" className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
                 <Facebook className="w-3 h-3" />
               </a>
-              <a href="#" className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+              <a href="https://www.linkedin.com/showcase/health-tech-liberia-htl/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn" className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
                 <Linkedin className="w-3 h-3" />
               </a>
             </div>

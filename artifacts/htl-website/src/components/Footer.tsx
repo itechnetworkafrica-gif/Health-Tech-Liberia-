@@ -48,11 +48,11 @@ function IconYouTube() {
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const SOCIAL = [
-  { label: "LinkedIn",    href: "https://www.linkedin.com/company/health-tech-liberia", Icon: IconLinkedin },
-  { label: "Facebook",    href: "https://www.facebook.com/healthtechliberia",           Icon: IconFacebook },
-  { label: "Instagram",   href: "https://www.instagram.com/healthtechliberia",          Icon: IconInstagram },
-  { label: "X (Twitter)", href: "https://x.com/htliberia",                              Icon: IconX },
-  { label: "YouTube",     href: "https://www.youtube.com/@healthtechliberia",           Icon: IconYouTube },
+  { label: "LinkedIn",    href: "https://www.linkedin.com/showcase/health-tech-liberia-htl/",    Icon: IconLinkedin },
+  { label: "Facebook",    href: "https://www.facebook.com/profile.php?id=100087475826014",   Icon: IconFacebook },
+  { label: "Instagram",   href: "https://instagram.com/healthtechliberia/",                  Icon: IconInstagram },
+  { label: "X (Twitter)", href: "https://x.com/healthtechliberia/",                          Icon: IconX },
+  { label: "YouTube",     href: "https://youtube.com/@health-techlib?si=JFjpHVa895wiNNsX",  Icon: IconYouTube },
 ];
 
 const ACCORDIONS = [

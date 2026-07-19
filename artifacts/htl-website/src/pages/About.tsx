@@ -7,6 +7,7 @@ import teamBoakai from "@assets/1784333629096_1784333815217.jpg";
 import teamMakessa from "@assets/IMG-20260718-WA0003_1784345113970.jpg";
 import orgGroup from "@assets/1784333574982_1784333815299.jpg";
 import orgTeam3 from "@assets/1784333542402_1784333815340.jpg";
+import SEO from "@/components/SEO";
 
 const ABOUT_SLIDES: HeroSlide[] = [
   {
@@ -48,6 +49,12 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="About Us"
+      description="Learn about Health Tech Liberia's mission, vision, leadership team, and our commitment to transforming healthcare through technology in West Africa."
+      canonical="/about"
+      keywords="about Health Tech Liberia, HTL team, health mission Liberia, nonprofit West Africa"
+      />
       <HeroSlider slides={ABOUT_SLIDES} height="70dvh" />
 
       {/* Mission & Vision */}

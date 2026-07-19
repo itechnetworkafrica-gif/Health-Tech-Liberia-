@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import hero1 from "../assets/hero_1.jpg";
+import SEO from "@/components/SEO";
 
 const PROGRAM_DATA: Record<string, any> = {
   "digital-health": {
@@ -142,6 +143,12 @@ export default function ProgramDetail() {
 
   return (
     <div className="min-h-screen bg-white pb-24">
+      <SEO
+      title="Program Details"
+      description="Learn more about Health Tech Liberia's programs driving digital health innovation, STEM education, and community empowerment across Liberia and West Africa."
+      canonical="/programs"
+      keywords="Health Tech Liberia program, digital health Liberia, health program details"
+      />
       <HeroSlider slides={SLIDES} height="60dvh" />
 
       <section className="py-24">

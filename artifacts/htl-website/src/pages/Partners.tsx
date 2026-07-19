@@ -3,6 +3,7 @@ import { Handshake, ArrowRight, HeartPulse } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import { Link } from "wouter";
 import hero1 from "../assets/hero_1.jpg";
+import SEO from "@/components/SEO";
 
 const PARTNER_SLIDES: HeroSlide[] = [
   {
@@ -16,6 +17,12 @@ const PARTNER_SLIDES: HeroSlide[] = [
 export default function Partners() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="Our Partners"
+      description="Meet the organizations and institutions partnering with Health Tech Liberia to advance digital health, research, and community wellness in West Africa."
+      canonical="/partners"
+      keywords="Health Tech Liberia partners, health partnership Liberia, digital health collaboration Africa"
+      />
       <HeroSlider slides={PARTNER_SLIDES} height="50dvh" />
 
       <section className="py-24 bg-[#F4F7FF]">

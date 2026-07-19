@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
 import { Eye, EyeOff, LogIn, Loader2 } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function Login() {
   const { login } = useAuth();
@@ -28,6 +29,12 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A2D7A] via-[#0A3FAF] to-[#1a5ccc] flex items-center justify-center px-4 py-16">
+      <SEO
+      title="Login"
+      description="Sign in to your Health Tech Liberia account to access programs, resources, and community features."
+      canonical="/login"
+      noIndex={true}
+      />
       <div className="w-full max-w-md">
         {/* Card */}
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">

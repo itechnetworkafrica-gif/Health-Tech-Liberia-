@@ -5,6 +5,7 @@ import {
   Calendar, User, BookOpen, Shield, RefreshCw,
   FileText, ExternalLink, ChevronRight,
 } from "lucide-react";
+import SEO from "@/components/SEO";
 
 // ── Mock certificate data ─────────────────────────────────────────────────────
 interface Certificate {
@@ -182,6 +183,12 @@ export default function Certificates() {
 
   return (
     <div>
+      <SEO
+      title="Certificates"
+      description="Verify and access digital health education certificates issued by Health Tech Liberia for program participants and learners across Liberia and West Africa."
+      canonical="/certificates"
+      keywords="Health Tech Liberia certificate, digital health certificate Liberia, HTL certification"
+      />
       {selected && <CertificatePrintView cert={selected} />}
 
       {/* ── HERO ── */}

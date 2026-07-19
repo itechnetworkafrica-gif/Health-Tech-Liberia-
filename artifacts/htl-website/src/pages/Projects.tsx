@@ -6,6 +6,7 @@ import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import proj1 from "../assets/project_1.jpg";
 import proj2 from "../assets/project_2.jpg";
 import proj3 from "../assets/project_3.jpg";
+import SEO from "@/components/SEO";
 
 const PROJECT_SLIDES: HeroSlide[] = [
   {
@@ -104,6 +105,12 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="Our Projects"
+      description="Discover Health Tech Liberia's impactful projects advancing digital health, research, and community wellness across Liberia and West Africa."
+      canonical="/projects"
+      keywords="Health Tech Liberia projects, health projects Liberia, digital health initiatives Africa"
+      />
       {/* Case Study Modal */}
       <AnimatePresence>
         {selected && (

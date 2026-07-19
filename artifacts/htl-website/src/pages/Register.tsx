@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/contexts/AuthContext";
 import { Eye, EyeOff, UserPlus, Loader2, CheckCircle2 } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function Register() {
   const { register } = useAuth();
@@ -51,6 +52,12 @@ export default function Register() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0A2D7A] via-[#0A3FAF] to-[#1a5ccc] flex items-center justify-center px-4 py-16">
+      <SEO
+      title="Register"
+      description="Create your Health Tech Liberia account to join our community, access digital health programs, and connect with health innovators across West Africa."
+      canonical="/register"
+      noIndex={true}
+      />
       <div className="w-full max-w-md">
         {/* Card */}
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">

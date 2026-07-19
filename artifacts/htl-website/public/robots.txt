@@ -1,2 +1,8 @@
 User-agent: *
 Allow: /
+
+# Disallow admin/auth pages from indexing
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://healthtechliberia.org/sitemap.xml

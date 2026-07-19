@@ -11,6 +11,7 @@ A React + Express full-stack application for Health Tech Liberia — a digital h
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required env: `DATABASE_URL` — Postgres connection string (auto-provided by Replit)
+- Required env: `SESSION_SECRET` — secret for session signing (set as Replit secret)
 
 ## Stack
 
@@ -24,7 +25,7 @@ A React + Express full-stack application for Health Tech Liberia — a digital h
 
 ## Where things live
 
-- `artifacts/htl-website/` — React frontend
+- `artifacts/htl-website/` — React frontend (Vite)
 - `artifacts/api-server/` — Express API server
 - `lib/db/` — Drizzle ORM schema and DB client
 - `lib/api-spec/` — OpenAPI spec (source of truth for API contract)
@@ -36,8 +37,9 @@ A React + Express full-stack application for Health Tech Liberia — a digital h
 
 - Path-based artifact routing: frontend at `/`, API at `/api`
 - API contract is defined in OpenAPI spec (`lib/api-spec`); client hooks and Zod schemas are code-generated from it
-- DB schema lives in `lib/db/src/schema/index.ts` — currently empty (LMS schema to be built)
-- SESSION_SECRET is set for future session-based auth
+- DB schema lives in `lib/db/src/schema/index.ts` — users table + sessions table (for auth)
+- SESSION_SECRET is set as a Replit secret for session-based auth
+- Auth uses bcrypt + express-session stored in Postgres (`sessions` table)
 
 ## Product
 
@@ -51,8 +53,9 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 - Always run `pnpm install` from the workspace root after pulling changes
 - `DATABASE_URL` and `PORT` are auto-injected by Replit — do not hardcode them
+- `SESSION_SECRET` must be set as a Replit secret; the API server throws on startup if missing
 - The `.migration-backup/` directory contains a pre-migration snapshot; ignore its artifacts and workflows
-- The DB schema (`lib/db/src/schema/index.ts`) is currently empty — the LMS schema needs to be built
+- Sessions are stored in the `sessions` Postgres table (created by `connect-pg-simple` at runtime)
 
 ## Pointers
 

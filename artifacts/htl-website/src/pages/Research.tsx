@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Download, FileText, Search, ExternalLink, Calendar, BookOpen } from "lucide-react";
 import HeroSlider, { HeroSlide } from "@/components/HeroSlider";
 import hero1 from "../assets/hero_1.jpg";
+import SEO from "@/components/SEO";
 
 const RESEARCH_SLIDES: HeroSlide[] = [
   {
@@ -56,6 +57,12 @@ const typeColors: Record<string, string> = {
 export default function Research() {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+      title="Research"
+      description="Explore Health Tech Liberia's research initiatives advancing evidence-based digital health solutions and health data innovation in Liberia and West Africa."
+      canonical="/research"
+      keywords="Health Tech Liberia research, health research Liberia, digital health evidence, health data Africa"
+      />
       <HeroSlider slides={RESEARCH_SLIDES} height="50dvh" />
 
       {/* Research approach */}

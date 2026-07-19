@@ -22,9 +22,11 @@ import {
 // ---------------------------------------------------------------------------
 // Stripe initialisation (publishable key from env)
 // ---------------------------------------------------------------------------
-const stripePromise = loadStripe(
-  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY as string,
-);
+const STRIPE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY as
+  | string
+  | undefined;
+
+const stripePromise = STRIPE_KEY ? loadStripe(STRIPE_KEY) : null;
 
 // ---------------------------------------------------------------------------
 // Static data
@@ -471,9 +473,28 @@ export default function Donate() {
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.18 }}
                     >
-                      <Elements stripe={stripePromise}>
-                        <CardDonationForm amountUsd={numericAmount} />
-                      </Elements>
+                      {stripePromise ? (
+                        <Elements stripe={stripePromise}>
+                          <CardDonationForm amountUsd={numericAmount} />
+                        </Elements>
+                      ) : (
+                        <div className="rounded-xl border-2 border-amber-200 bg-amber-50 px-5 py-6 text-center space-y-2">
+                          <p className="font-semibold text-amber-800 text-sm">
+                            Card payments are temporarily unavailable.
+                          </p>
+                          <p className="text-amber-700 text-xs leading-relaxed">
+                            Please use Bank Transfer or Mobile Money below, or
+                            email{" "}
+                            <a
+                              href="mailto:healthtechliberia@gmail.com"
+                              className="underline font-medium"
+                            >
+                              healthtechliberia@gmail.com
+                            </a>{" "}
+                            to donate by card.
+                          </p>
+                        </div>
+                      )}
                     </motion.div>
                   )}
 

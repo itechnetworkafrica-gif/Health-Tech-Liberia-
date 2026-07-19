@@ -160,12 +160,16 @@ function CardDonationForm({ amountUsd }: { amountUsd: number }) {
         <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
           Card Details
         </label>
-        <div className="w-full rounded-xl border-2 border-gray-200 px-4 py-4 bg-gray-50 focus-within:border-[#0A3FAF] focus-within:bg-white transition-all">
+        <div
+          className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 focus-within:border-[#0A3FAF] focus-within:bg-white transition-all"
+          style={{ padding: "14px 16px", minHeight: "52px" }}
+        >
           <CardElement
             options={{
               style: {
                 base: {
                   fontSize: "16px",
+                  lineHeight: "24px",
                   color: "#1a202c",
                   fontFamily: "Inter, system-ui, sans-serif",
                   fontSmoothing: "antialiased",

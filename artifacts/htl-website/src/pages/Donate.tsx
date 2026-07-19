@@ -169,7 +169,6 @@ function CardDonationForm({ amountUsd }: { amountUsd: number }) {
               style: {
                 base: {
                   fontSize: "16px",
-                  lineHeight: "24px",
                   color: "#1a202c",
                   fontFamily: "Inter, system-ui, sans-serif",
                   fontSmoothing: "antialiased",

@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Mail, Phone, MapPin, Lock, ExternalLink } from "lucide-react";
 
-// ── Social icon SVGs ──────────────────────────────────────────────────────────
+// ── Brand colors ──────────────────────────────────────────────────────────────
+// primary blue: #0A2D7A   gold: #C9972D
+
+// ── Social SVGs ───────────────────────────────────────────────────────────────
 function IconLinkedin() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]" aria-hidden="true">
       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v1.5A6 6 0 0 1 16 8zM2 9h4v12H2z" />
       <circle cx="4" cy="4" r="2" />
     </svg>
@@ -13,14 +16,14 @@ function IconLinkedin() {
 }
 function IconFacebook() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]" aria-hidden="true">
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
   );
 }
 function IconInstagram() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px]" aria-hidden="true">
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" strokeWidth="0" />
@@ -29,20 +32,26 @@ function IconInstagram() {
 }
 function IconX() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]" aria-hidden="true">
       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
     </svg>
   );
 }
 
 const SOCIAL = [
-  { label: "LinkedIn",  href: "https://www.linkedin.com/company/health-tech-liberia", Icon: IconLinkedin },
-  { label: "Facebook",  href: "https://www.facebook.com/healthtechliberia",            Icon: IconFacebook },
-  { label: "Instagram", href: "https://www.instagram.com/healthtechliberia",           Icon: IconInstagram },
-  { label: "X",         href: "https://x.com/htliberia",                               Icon: IconX },
+  { label: "Follow us on LinkedIn",  href: "https://www.linkedin.com/company/health-tech-liberia", Icon: IconLinkedin },
+  { label: "Follow us on Facebook",  href: "https://www.facebook.com/healthtechliberia",            Icon: IconFacebook },
+  { label: "Follow us on Instagram", href: "https://www.instagram.com/healthtechliberia",           Icon: IconInstagram },
+  { label: "Follow us on X",         href: "https://x.com/htliberia",                               Icon: IconX },
 ];
 
-const SECTIONS = [
+const CONTACT_ITEMS = [
+  { Icon: Mail,    label: "Email us",           text: "healthtechliberia@gmail.com", href: "mailto:healthtechliberia@gmail.com" },
+  { Icon: Phone,   label: "Call us",            text: "+231 776 836 689",            href: "tel:+231776836689" },
+  { Icon: MapPin,  label: "Our location",       text: "Monrovia, Liberia",           href: "#" },
+];
+
+const ACCORDION_SECTIONS = [
   {
     title: "About Us",
     links: [
@@ -80,113 +89,221 @@ const SECTIONS = [
       { label: "Donate",             path: "/donate" },
     ],
   },
-  {
-    title: "Contact Us",
-    links: [
-      { label: "healthtechliberia@gmail.com", path: "mailto:healthtechliberia@gmail.com" },
-      { label: "+231 776 836 689",            path: "tel:+231776836689" },
-      { label: "Monrovia, Liberia",           path: "#" },
-      { label: "healthtech-liberia.org",      path: "#" },
-    ],
-  },
 ];
 
-function AccordionRow({ title, links }: { title: string; links: { label: string; path: string }[] }) {
+const LEGAL_LINKS = [
+  { label: "Privacy Policy",         path: "/privacy" },
+  { label: "Terms of Service",       path: "/terms" },
+  { label: "Cookie Policy",          path: "/privacy#cookies" },
+  { label: "Donation Transparency",  path: "/donate#transparency" },
+];
+
+// ── Full-width divider ─────────────────────────────────────────────────────────
+function Divider() {
+  return <div className="w-full h-px bg-white" role="separator" />;
+}
+
+// ── Accordion row ─────────────────────────────────────────────────────────────
+function AccordionRow({
+  title,
+  links,
+}: {
+  title: string;
+  links: { label: string; path: string }[];
+}) {
   const [open, setOpen] = useState(false);
+  const id = `footer-accordion-${title.toLowerCase().replace(/\s+/g, "-")}`;
 
   return (
     <div>
-      {/* full-width solid white top line */}
-      <div className="w-full h-px bg-white" />
+      <Divider />
       <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-5 px-6 text-left"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={id}
+        className="w-full flex items-center justify-between py-[1.125rem] px-6 text-left
+                   focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-inset
+                   group"
       >
-        <span className="text-white font-semibold text-base">{title}</span>
+        <span className="text-white font-semibold text-[0.9375rem] tracking-wide group-hover:text-gray-300 transition-colors duration-200">
+          {title}
+        </span>
         <ChevronDown
-          className={`w-5 h-5 text-white shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          className={`w-5 h-5 text-white shrink-0 transition-transform duration-300 ease-out group-hover:text-gray-300 ${
+            open ? "rotate-180" : ""
+          }`}
         />
       </button>
 
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${open ? "max-h-96" : "max-h-0"}`}
+        id={id}
+        role="region"
+        aria-label={title}
+        className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
+          open ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0"
+        }`}
       >
-        <div className="px-6 pb-5 flex flex-col gap-3">
+        <ul className="px-6 pb-6 flex flex-col gap-[0.625rem]" role="list">
           {links.map((link) => (
-            <Link
-              key={link.label}
-              href={link.path}
-              className="text-gray-400 hover:text-white text-sm transition-colors"
-            >
-              {link.label}
-            </Link>
+            <li key={link.label}>
+              <Link
+                href={link.path}
+                className="text-gray-400 hover:text-white text-sm leading-relaxed
+                           transition-colors duration-150 focus:outline-none
+                           focus-visible:underline focus-visible:text-white"
+              >
+                {link.label}
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );
 }
 
+// ── Main footer ───────────────────────────────────────────────────────────────
 export default function Footer() {
-  return (
-    <footer className="bg-black text-white">
+  const year = new Date().getFullYear();
 
-      {/* ── Tagline + social ── */}
-      <div className="px-6 pt-14 pb-10">
-        <p className="text-white font-bold text-2xl leading-snug max-w-xs mb-10">
-          Transforming Health Through Technology, Research, and Advocacy in Liberia.
+  return (
+    <footer className="bg-black text-white" role="contentinfo" aria-label="Site footer">
+
+      {/* ── 1. Tagline + social ─────────────────────────────────────────────── */}
+      <div className="px-6 pt-16 pb-12 max-w-xl">
+        <p className="text-white font-bold text-[1.5rem] leading-[1.35] mb-10">
+          Transforming Health Through Technology,&nbsp;Research, and Advocacy in&nbsp;Liberia.
         </p>
 
-        <p className="text-white text-sm font-semibold tracking-wider mb-5">
+        <p className="text-gray-400 text-[0.75rem] font-semibold tracking-[0.12em] uppercase mb-5">
           Follow us
         </p>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4" role="list" aria-label="Social media links">
           {SOCIAL.map(({ label, href, Icon }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-200"
-            >
-              <Icon />
-            </a>
+            <div key={label} role="listitem">
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center
+                           text-white transition-all duration-200 ease-out
+                           hover:bg-white hover:text-black hover:scale-105 hover:shadow-[0_0_0_3px_rgba(255,255,255,0.25)]
+                           active:scale-95
+                           focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                <Icon />
+              </a>
+            </div>
           ))}
         </div>
       </div>
 
-      {/* ── Accordion sections (each has its own top white line) ── */}
-      <div>
-        {SECTIONS.map((section) => (
+      <Divider />
+
+      {/* ── 2. Contact strip — always visible ──────────────────────────────── */}
+      <address className="not-italic px-6 py-8 flex flex-col gap-4">
+        {CONTACT_ITEMS.map(({ Icon, label, text, href }) => (
+          <a
+            key={text}
+            href={href}
+            aria-label={label}
+            className="flex items-start gap-4 group focus:outline-none focus-visible:underline"
+          >
+            <span className="flex-shrink-0 w-8 h-8 rounded-full border border-white/30 flex items-center justify-center
+                             group-hover:border-white transition-colors duration-200">
+              <Icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors duration-200" aria-hidden="true" />
+            </span>
+            <span className="text-gray-300 text-sm leading-relaxed group-hover:text-white transition-colors duration-200 self-center">
+              {text}
+            </span>
+          </a>
+        ))}
+      </address>
+
+      {/* ── 3. Accordion nav sections ───────────────────────────────────────── */}
+      <nav aria-label="Footer navigation">
+        {ACCORDION_SECTIONS.map((section) => (
           <AccordionRow key={section.title} title={section.title} links={section.links} />
         ))}
-        {/* closing line after last row */}
-        <div className="w-full h-px bg-white" />
+        <Divider />
+      </nav>
+
+      {/* ── 4. Trust strip ──────────────────────────────────────────────────── */}
+      <div className="px-6 py-7 flex flex-col gap-5">
+        {/* SSL + Registration */}
+        <div className="flex flex-wrap items-center gap-4">
+          <span className="inline-flex items-center gap-1.5 text-[0.7rem] text-gray-500 border border-white/15 rounded px-2.5 py-1.5 leading-none">
+            <Lock className="w-3 h-3 text-green-500" aria-hidden="true" />
+            SSL Secured
+          </span>
+          <span className="text-[0.7rem] text-gray-600 leading-none">
+            Registered Nonprofit · Liberia
+          </span>
+        </div>
+
+        {/* Legal links */}
+        <nav aria-label="Legal links">
+          <ul className="flex flex-wrap gap-x-5 gap-y-2" role="list">
+            {LEGAL_LINKS.map(({ label, path }) => (
+              <li key={label}>
+                <Link
+                  href={path}
+                  className="text-[0.75rem] text-gray-500 hover:text-white transition-colors duration-150
+                             focus:outline-none focus-visible:underline focus-visible:text-white"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
 
-      {/* ── Bottom bar ── */}
-      <div className="px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
-        <p className="text-gray-500 text-xs text-center md:text-left">
-          &copy; {new Date().getFullYear()} Health Tech Liberia. All rights reserved.
+      <Divider />
+
+      {/* ── 5. Bottom bar ───────────────────────────────────────────────────── */}
+      <div className="px-6 py-8 flex flex-col gap-5">
+
+        {/* Copyright */}
+        <p className="text-gray-400 text-[0.8125rem] leading-relaxed">
+          &copy; {year} Health Tech Liberia. All rights reserved.
         </p>
-        <p className="text-gray-600 text-xs text-center">
-          Built by{" "}
-          <span className="text-[#C9972D] font-semibold">iTech Network Africa</span>
-          {" · "}
-          <a
-            href="https://gotecx.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#C9972D] hover:text-white transition-colors font-semibold"
-          >
-            Gotecx
-          </a>
-        </p>
-        <div className="flex items-center gap-5 text-xs text-gray-500">
-          <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-          <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+
+        {/* Built by */}
+        <div className="flex flex-col gap-1.5">
+          <p className="text-gray-500 text-[0.75rem] uppercase tracking-[0.08em] font-medium">
+            Designed &amp; Developed by
+          </p>
+          <div className="flex items-center gap-3 flex-wrap">
+            <a
+              href="https://itechnetworkafrica.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit iTech Network Africa website"
+              className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#C9972D]
+                         hover:text-white transition-colors duration-200
+                         focus:outline-none focus-visible:underline focus-visible:text-white"
+            >
+              iTech Network Africa
+              <ExternalLink className="w-3 h-3 opacity-60" aria-hidden="true" />
+            </a>
+            <span className="text-gray-700 text-sm">·</span>
+            <a
+              href="https://gotecx.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Gotecx website"
+              className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#C9972D]
+                         hover:text-white transition-colors duration-200
+                         focus:outline-none focus-visible:underline focus-visible:text-white"
+            >
+              Gotecx
+              <ExternalLink className="w-3 h-3 opacity-60" aria-hidden="true" />
+            </a>
+          </div>
         </div>
+
       </div>
 
     </footer>
